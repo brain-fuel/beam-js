@@ -15,6 +15,13 @@ import {
   createElement,
   createElementNS,
   createEvent,
+  createNodeIterator,
+  createProcessingInstruction,
+  createRange,
+  createTextNode,
+  createTouch,
+  createTouchList,
+  createTreeWalker,
   body,
   characterSet,
   childElementCount,
@@ -26,6 +33,12 @@ import {
   documentElement,
   documentURI,
   embeds,
+  elementFromPoint,
+  elementsFromPoint,
+  enableStyleSheetsForSet,
+  exitFullscreen,
+  exitPictureInPicture,
+  exitPointerLock,
   featurePolicy,
   firstElementChild,
   fonts,
@@ -200,6 +213,69 @@ test("createEventFrom calls createEvent on passed document", () => {
   expect(documentModule.createEventFrom(doc, "evt")).toBe("evt");
 });
 
+test("createNodeIterator calls document.createNodeIterator", () => {
+  (globalThis as any).document = { createNodeIterator: (n: any) => ({ n }) };
+  expect(createNodeIterator("n")).toEqual({ n: "n" });
+});
+test("createNodeIteratorFrom calls createNodeIterator on passed document", () => {
+  const doc: any = { createNodeIterator: (n: any) => n + "F" };
+  expect(documentModule.createNodeIteratorFrom(doc, "x")).toBe("xF");
+});
+
+test("createProcessingInstruction calls document.createProcessingInstruction", () => {
+  (globalThis as any).document = { createProcessingInstruction: (t: any, d: any) => `${t}:${d}` };
+  expect(createProcessingInstruction("t","d")).toBe("t:d");
+});
+test("createProcessingInstructionFrom calls createProcessingInstruction on passed document", () => {
+  const doc: any = { createProcessingInstruction: () => "pi" };
+  expect(documentModule.createProcessingInstructionFrom(doc, "a","b")).toBe("pi");
+});
+
+test("createRange calls document.createRange", () => {
+  (globalThis as any).document = { createRange: () => "R" };
+  expect(createRange()).toBe("R");
+});
+test("createRangeFrom calls createRange on passed document", () => {
+  const doc: any = { createRange: () => "DR" };
+  expect(documentModule.createRangeFrom(doc)).toBe("DR");
+});
+
+test("createTextNode calls document.createTextNode", () => {
+  (globalThis as any).document = { createTextNode: (t: any) => t + t };
+  expect(createTextNode("a")).toBe("aa");
+});
+test("createTextNodeFrom calls createTextNode on passed document", () => {
+  const doc: any = { createTextNode: (t: any) => t.toUpperCase() };
+  expect(documentModule.createTextNodeFrom(doc, "b")).toBe("B");
+});
+
+test("createTouch calls document.createTouch", () => {
+  (globalThis as any).document = { createTouch: (v: any) => ({ v }) };
+  expect(createTouch(1)).toEqual({ v: 1 });
+});
+test("createTouchFrom calls createTouch on passed document", () => {
+  const doc: any = { createTouch: (v: any) => ({ dv: v }) };
+  expect(documentModule.createTouchFrom(doc, 2)).toEqual({ dv: 2 });
+});
+
+test("createTouchList calls document.createTouchList", () => {
+  (globalThis as any).document = { createTouchList: (...a: any[]) => a.length };
+  expect(createTouchList(1,2)).toBe(2);
+});
+test("createTouchListFrom calls createTouchList on passed document", () => {
+  const doc: any = { createTouchList: () => 5 };
+  expect(documentModule.createTouchListFrom(doc)).toBe(5);
+});
+
+test("createTreeWalker calls document.createTreeWalker", () => {
+  (globalThis as any).document = { createTreeWalker: (n: any) => ({ node: n }) };
+  expect(createTreeWalker("n")).toEqual({ node: "n" });
+});
+test("createTreeWalkerFrom calls createTreeWalker on passed document", () => {
+  const doc: any = { createTreeWalker: () => "tw" };
+  expect(documentModule.createTreeWalkerFrom(doc, 0)).toBe("tw");
+});
+
 test("body returns document.body", () => {
   (globalThis as any).document = { body: "b" };
   expect(body()).toBe("b");
@@ -253,6 +329,60 @@ test("documentURI returns document.documentURI", () => {
 test("embeds returns document.embeds", () => {
   (globalThis as any).document = { embeds: [1, 2] };
   expect(embeds()).toEqual([1, 2]);
+});
+
+test("elementFromPoint calls document.elementFromPoint", () => {
+  (globalThis as any).document = { elementFromPoint: (x: any, y: any) => `${x}-${y}` };
+  expect(elementFromPoint(1,2)).toBe("1-2");
+});
+test("elementFromPointFrom calls elementFromPoint on passed document", () => {
+  const doc: any = { elementFromPoint: () => "el" };
+  expect(documentModule.elementFromPointFrom(doc, 0,0)).toBe("el");
+});
+
+test("elementsFromPoint calls document.elementsFromPoint", () => {
+  (globalThis as any).document = { elementsFromPoint: () => ["a"] };
+  expect(elementsFromPoint()).toEqual(["a"]);
+});
+test("elementsFromPointFrom calls elementsFromPoint on passed document", () => {
+  const doc: any = { elementsFromPoint: () => ["b"] };
+  expect(documentModule.elementsFromPointFrom(doc)).toEqual(["b"]);
+});
+
+test("enableStyleSheetsForSet calls document.enableStyleSheetsForSet", () => {
+  (globalThis as any).document = { enableStyleSheetsForSet: (s: any) => s };
+  expect(enableStyleSheetsForSet("set")).toBe("set");
+});
+test("enableStyleSheetsForSetFrom calls enableStyleSheetsForSet on passed document", () => {
+  const doc: any = { enableStyleSheetsForSet: (s: any) => `d:${s}` };
+  expect(documentModule.enableStyleSheetsForSetFrom(doc, "s")).toBe("d:s");
+});
+
+test("exitFullscreen calls document.exitFullscreen", () => {
+  (globalThis as any).document = { exitFullscreen: () => "ef" };
+  expect(exitFullscreen()).toBe("ef");
+});
+test("exitFullscreenFrom calls exitFullscreen on passed document", () => {
+  const doc: any = { exitFullscreen: () => "wf" };
+  expect(documentModule.exitFullscreenFrom(doc)).toBe("wf");
+});
+
+test("exitPictureInPicture calls document.exitPictureInPicture", () => {
+  (globalThis as any).document = { exitPictureInPicture: () => 1 };
+  expect(exitPictureInPicture()).toBe(1);
+});
+test("exitPictureInPictureFrom calls exitPictureInPicture on passed document", () => {
+  const doc: any = { exitPictureInPicture: () => 2 };
+  expect(documentModule.exitPictureInPictureFrom(doc)).toBe(2);
+});
+
+test("exitPointerLock calls document.exitPointerLock", () => {
+  (globalThis as any).document = { exitPointerLock: () => "pl" };
+  expect(exitPointerLock()).toBe("pl");
+});
+test("exitPointerLockFrom calls exitPointerLock on passed document", () => {
+  const doc: any = { exitPointerLock: () => "dpl" };
+  expect(documentModule.exitPointerLockFrom(doc)).toBe("dpl");
 });
 
 test("featurePolicy returns document.featurePolicy", () => {
@@ -436,6 +566,19 @@ const skipDocumentFromFns = [
   "createElementFrom",
   "createElementNSFrom",
   "createEventFrom",
+  "createNodeIteratorFrom",
+  "createProcessingInstructionFrom",
+  "createRangeFrom",
+  "createTextNodeFrom",
+  "createTouchFrom",
+  "createTouchListFrom",
+  "createTreeWalkerFrom",
+  "elementFromPointFrom",
+  "elementsFromPointFrom",
+  "enableStyleSheetsForSetFrom",
+  "exitFullscreenFrom",
+  "exitPictureInPictureFrom",
+  "exitPointerLockFrom",
 ];
 Object.keys(documentModule)
   .filter((k) => k.endsWith("From") && !skipDocumentFromFns.includes(k))

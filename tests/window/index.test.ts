@@ -21,10 +21,19 @@ import {
   devicePixelRatio,
   document,
   documentPictureInPicture,
+  dump,
   fence,
+  fetch,
+  fetchLater,
+  find,
+  focus,
   frameElement,
   frames,
   fullScreen,
+  getComputedStyle,
+  getDefaultComputedStyle,
+  getScreenDetails,
+  getSelection,
   history,
   indexedDb,
   innerHeight,
@@ -35,12 +44,16 @@ import {
   localStorage,
   location,
   locationbar,
+  matchMedia,
   menubar,
   mozInnerScreenX,
   mozInnerScreenY,
+  moveBy,
+  moveTo,
   name,
   navigation,
   navigator,
+  open,
   opener,
   origin,
   originAgentCluster,
@@ -51,6 +64,13 @@ import {
   parent,
   performance,
   personalbar,
+  postMessage,
+  print,
+  prompt,
+  queryLocalFonts,
+  queueMicrotask,
+  reportError,
+  requestAnimationFrame,
   scheduler,
   screen,
   screenLeft,
@@ -230,6 +250,51 @@ test("documentPictureInPicture returns global documentPictureInPicture", () => {
   expect(documentPictureInPicture()).toEqual({ pip: true });
 });
 
+test("dump calls global dump", () => {
+  (globalThis as any).dump = (...a: any[]) => a.join("|");
+  expect(dump("a", "b")).toBe("a|b");
+});
+test("dumpFrom calls dump on passed window", () => {
+  const win: any = { dump: (...a: any[]) => a.length };
+  expect(windowModule.dumpFrom(win, 1, 2, 3)).toBe(3);
+});
+
+test("fetch calls global fetch", () => {
+  (globalThis as any).fetch = (u: any) => `F:${u}`;
+  expect(fetch("url")).toBe("F:url");
+});
+test("fetchFrom calls fetch on passed window", () => {
+  const win: any = { fetch: (u: any) => `WF:${u}` };
+  expect(windowModule.fetchFrom(win, "u")).toBe("WF:u");
+});
+
+test("fetchLater calls global fetchLater", () => {
+  (globalThis as any).fetchLater = (u: any) => `FL:${u}`;
+  expect(fetchLater("u")).toBe("FL:u");
+});
+test("fetchLaterFrom calls fetchLater on passed window", () => {
+  const win: any = { fetchLater: (u: any) => `WFL:${u}` };
+  expect(windowModule.fetchLaterFrom(win, "x")).toBe("WFL:x");
+});
+
+test("find calls global find", () => {
+  (globalThis as any).find = (t: any) => t.toUpperCase();
+  expect(find("x")).toBe("X");
+});
+test("findFrom calls find on passed window", () => {
+  const win: any = { find: (s: any) => s + s };
+  expect(windowModule.findFrom(win, "a")).toBe("aa");
+});
+
+test("focus calls global focus", () => {
+  (globalThis as any).focus = () => "FOCUS";
+  expect(focus()).toBe("FOCUS");
+});
+test("focusFrom calls focus on passed window", () => {
+  const win: any = { focus: () => "WF" };
+  expect(windowModule.focusFrom(win)).toBe("WF");
+});
+
 test("fence returns global fence", () => {
   (globalThis as any).fence = { fenced: true };
   expect(fence()).toEqual({ fenced: true });
@@ -248,6 +313,42 @@ test("frames returns global frames", () => {
 test("fullScreen returns global fullScreen", () => {
   (globalThis as any).fullScreen = true;
   expect(fullScreen()).toBe(true);
+});
+
+test("getComputedStyle calls global getComputedStyle", () => {
+  (globalThis as any).getComputedStyle = (e: any) => ({ el: e });
+  expect(getComputedStyle("div")).toEqual({ el: "div" });
+});
+test("getComputedStyleFrom calls getComputedStyle on passed window", () => {
+  const win: any = { getComputedStyle: (e: any) => ({ w: e }) };
+  expect(windowModule.getComputedStyleFrom(win, "p")).toEqual({ w: "p" });
+});
+
+test("getDefaultComputedStyle calls global getDefaultComputedStyle", () => {
+  (globalThis as any).getDefaultComputedStyle = (e: any) => ({ d: e });
+  expect(getDefaultComputedStyle("el")).toEqual({ d: "el" });
+});
+test("getDefaultComputedStyleFrom calls getDefaultComputedStyle on passed window", () => {
+  const win: any = { getDefaultComputedStyle: (e: any) => ({ win: e }) };
+  expect(windowModule.getDefaultComputedStyleFrom(win, "x")).toEqual({ win: "x" });
+});
+
+test("getScreenDetails calls global getScreenDetails", () => {
+  (globalThis as any).getScreenDetails = () => "scr";
+  expect(getScreenDetails()).toBe("scr");
+});
+test("getScreenDetailsFrom calls getScreenDetails on passed window", () => {
+  const win: any = { getScreenDetails: () => "ws" };
+  expect(windowModule.getScreenDetailsFrom(win)).toBe("ws");
+});
+
+test("getSelection calls global getSelection", () => {
+  (globalThis as any).getSelection = () => "sel";
+  expect(getSelection()).toBe("sel");
+});
+test("getSelectionFrom calls getSelection on passed window", () => {
+  const win: any = { getSelection: () => "wsel" };
+  expect(windowModule.getSelectionFrom(win)).toBe("wsel");
 });
 
 test("history returns global history", () => {
@@ -300,6 +401,15 @@ test("locationbar returns global locationbar", () => {
   expect(locationbar()).toEqual({ bar: true });
 });
 
+test("matchMedia calls global matchMedia", () => {
+  (globalThis as any).matchMedia = (q: any) => ({ q });
+  expect(matchMedia("m")).toEqual({ q: "m" });
+});
+test("matchMediaFrom calls matchMedia on passed window", () => {
+  const win: any = { matchMedia: (q: any) => ({ w: q }) };
+  expect(windowModule.matchMediaFrom(win, "mq")).toEqual({ w: "mq" });
+});
+
 test("menubar returns global menubar", () => {
   (globalThis as any).menubar = { menu: true };
   expect(menubar()).toEqual({ menu: true });
@@ -315,6 +425,24 @@ test("mozInnerScreenY returns global mozInnerScreenY", () => {
   expect(mozInnerScreenY()).toBe(2);
 });
 
+test("moveBy calls global moveBy", () => {
+  (globalThis as any).moveBy = (x: any, y: any) => x + y;
+  expect(moveBy(1, 2)).toBe(3);
+});
+test("moveByFrom calls moveBy on passed window", () => {
+  const win: any = { moveBy: (x: any, y: any) => x * y };
+  expect(windowModule.moveByFrom(win, 2, 3)).toBe(6);
+});
+
+test("moveTo calls global moveTo", () => {
+  (globalThis as any).moveTo = (x: any, y: any) => x - y;
+  expect(moveTo(5, 2)).toBe(3);
+});
+test("moveToFrom calls moveTo on passed window", () => {
+  const win: any = { moveTo: (x: any, y: any) => y - x };
+  expect(windowModule.moveToFrom(win, 1, 4)).toBe(3);
+});
+
 test("name returns global name", () => {
   (globalThis as any).name = "win";
   expect(name()).toBe("win");
@@ -328,6 +456,15 @@ test("navigation returns global navigation", () => {
 test("navigator returns global navigator", () => {
   (globalThis as any).navigator = { ua: "test" };
   expect(navigator()).toEqual({ ua: "test" });
+});
+
+test("open calls global open", () => {
+  (globalThis as any).open = (u: any) => `O:${u}`;
+  expect(open("a")).toBe("O:a");
+});
+test("openFrom calls open on passed window", () => {
+  const win: any = { open: (u: any) => `W:${u}` };
+  expect(windowModule.openFrom(win, "b")).toBe("W:b");
 });
 
 test("opener returns global opener", () => {
@@ -378,6 +515,77 @@ test("performance returns global performance", () => {
 test("personalbar returns global personalbar", () => {
   (globalThis as any).personalbar = { bar: 1 };
   expect(personalbar()).toEqual({ bar: 1 });
+});
+
+test("postMessage calls global postMessage", () => {
+  (globalThis as any).postMessage = (m: any) => `P:${m}`;
+  expect(postMessage("msg")).toBe("P:msg");
+});
+test("postMessageFrom calls postMessage on passed window", () => {
+  const win: any = { postMessage: (m: any) => `WP:${m}` };
+  expect(windowModule.postMessageFrom(win, "ms")).toBe("WP:ms");
+});
+
+test("print calls global print", () => {
+  (globalThis as any).print = () => "PRINT";
+  expect(print()).toBe("PRINT");
+});
+test("printFrom calls print on passed window", () => {
+  const win: any = { print: () => "WPRINT" };
+  expect(windowModule.printFrom(win)).toBe("WPRINT");
+});
+
+test("prompt calls global prompt", () => {
+  (globalThis as any).prompt = () => "PROMPT";
+  expect(prompt()).toBe("PROMPT");
+});
+test("promptFrom calls prompt on passed window", () => {
+  const win: any = { prompt: () => "WP" };
+  expect(windowModule.promptFrom(win)).toBe("WP");
+});
+
+test("queryLocalFonts calls global queryLocalFonts", () => {
+  (globalThis as any).queryLocalFonts = () => [1];
+  expect(queryLocalFonts()).toEqual([1]);
+});
+test("queryLocalFontsFrom calls queryLocalFonts on passed window", () => {
+  const win: any = { queryLocalFonts: () => [2] };
+  expect(windowModule.queryLocalFontsFrom(win)).toEqual([2]);
+});
+
+test("queueMicrotask calls global queueMicrotask", () => {
+  (globalThis as any).queueMicrotask = (cb: any) => cb("q");
+  let val = "";
+  queueMicrotask((v: any) => (val = v));
+  expect(val).toBe("q");
+});
+test("queueMicrotaskFrom calls queueMicrotask on passed window", () => {
+  const win: any = { queueMicrotask: (cb: any) => cb(5) };
+  let n = 0;
+  windowModule.queueMicrotaskFrom(win, (v: any) => (n = v));
+  expect(n).toBe(5);
+});
+
+test("reportError calls global reportError", () => {
+  (globalThis as any).reportError = (e: any) => `R:${e}`;
+  expect(reportError("err")).toBe("R:err");
+});
+test("reportErrorFrom calls reportError on passed window", () => {
+  const win: any = { reportError: (e: any) => `WR:${e}` };
+  expect(windowModule.reportErrorFrom(win, "e")).toBe("WR:e");
+});
+
+test("requestAnimationFrame calls global requestAnimationFrame", () => {
+  (globalThis as any).requestAnimationFrame = (cb: any) => cb(3);
+  let r = 0;
+  requestAnimationFrame((v: any) => (r = v));
+  expect(r).toBe(3);
+});
+test("requestAnimationFrameFrom calls requestAnimationFrame on passed window", () => {
+  const win: any = { requestAnimationFrame: (cb: any) => cb(7) };
+  let r = 0;
+  windowModule.requestAnimationFrameFrom(win, (v: any) => (r = v));
+  expect(r).toBe(7);
 });
 
 test("scheduler returns global scheduler", () => {
@@ -499,6 +707,26 @@ const skipWindowFromFns = [
   "closeFrom",
   "confirmFrom",
   "createImageBitmapFrom",
+  "dumpFrom",
+  "fetchFrom",
+  "fetchLaterFrom",
+  "findFrom",
+  "focusFrom",
+  "getComputedStyleFrom",
+  "getDefaultComputedStyleFrom",
+  "getScreenDetailsFrom",
+  "getSelectionFrom",
+  "matchMediaFrom",
+  "moveByFrom",
+  "moveToFrom",
+  "openFrom",
+  "postMessageFrom",
+  "printFrom",
+  "promptFrom",
+  "queryLocalFontsFrom",
+  "queueMicrotaskFrom",
+  "reportErrorFrom",
+  "requestAnimationFrameFrom",
 ];
 Object.keys(windowModule)
   .filter((k) => k.endsWith("From") && !skipWindowFromFns.includes(k))

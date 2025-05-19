@@ -174,6 +174,14 @@ export function documentPictureInPictureFrom(win: any): unknown {
 }
 
 
+export function dump(...args: any[]): unknown {
+  return (globalThis as any).dump(...args);
+}
+export function dumpFrom(win: any, ...args: any[]): unknown {
+  return (win as any).dump(...args);
+}
+
+
 export function fence(): unknown {
   return (globalThis as any).fence;
 }
@@ -181,6 +189,34 @@ export function fenceFrom(win: any): unknown {
   return (win as any).fence;
 }
 
+
+export function fetch(...args: any[]): unknown {
+  return (globalThis as any).fetch(...args);
+}
+export function fetchFrom(win: any, ...args: any[]): unknown {
+  return (win as any).fetch(...args);
+}
+
+export function fetchLater(...args: any[]): unknown {
+  return (globalThis as any).fetchLater(...args);
+}
+export function fetchLaterFrom(win: any, ...args: any[]): unknown {
+  return (win as any).fetchLater(...args);
+}
+
+export function find(...args: any[]): unknown {
+  return (globalThis as any).find(...args);
+}
+export function findFrom(win: any, ...args: any[]): unknown {
+  return (win as any).find(...args);
+}
+
+export function focus(...args: any[]): unknown {
+  return (globalThis as any).focus(...args);
+}
+export function focusFrom(win: any, ...args: any[]): unknown {
+  return (win as any).focus(...args);
+}
 
 export function frameElement(): unknown {
   return (globalThis as any).frameElement;
@@ -205,6 +241,34 @@ export function fullScreenFrom(win: any): unknown {
   return (win as any).fullScreen;
 }
 
+
+export function getComputedStyle(...args: any[]): unknown {
+  return (globalThis as any).getComputedStyle(...args);
+}
+export function getComputedStyleFrom(win: any, ...args: any[]): unknown {
+  return (win as any).getComputedStyle(...args);
+}
+
+export function getDefaultComputedStyle(...args: any[]): unknown {
+  return (globalThis as any).getDefaultComputedStyle(...args);
+}
+export function getDefaultComputedStyleFrom(win: any, ...args: any[]): unknown {
+  return (win as any).getDefaultComputedStyle(...args);
+}
+
+export function getScreenDetails(...args: any[]): unknown {
+  return (globalThis as any).getScreenDetails(...args);
+}
+export function getScreenDetailsFrom(win: any, ...args: any[]): unknown {
+  return (win as any).getScreenDetails(...args);
+}
+
+export function getSelection(...args: any[]): unknown {
+  return (globalThis as any).getSelection(...args);
+}
+export function getSelectionFrom(win: any, ...args: any[]): unknown {
+  return (win as any).getSelection(...args);
+}
 
 export function history(): unknown {
   return (globalThis as any).history;
@@ -286,6 +350,13 @@ export function locationbarFrom(win: any): unknown {
 }
 
 
+export function matchMedia(...args: any[]): unknown {
+  return (globalThis as any).matchMedia(...args);
+}
+export function matchMediaFrom(win: any, ...args: any[]): unknown {
+  return (win as any).matchMedia(...args);
+}
+
 export function menubar(): unknown {
   return (globalThis as any).menubar;
 }
@@ -310,6 +381,20 @@ export function mozInnerScreenYFrom(win: any): unknown {
 }
 
 
+export function moveBy(...args: any[]): unknown {
+  return (globalThis as any).moveBy(...args);
+}
+export function moveByFrom(win: any, ...args: any[]): unknown {
+  return (win as any).moveBy(...args);
+}
+
+export function moveTo(...args: any[]): unknown {
+  return (globalThis as any).moveTo(...args);
+}
+export function moveToFrom(win: any, ...args: any[]): unknown {
+  return (win as any).moveTo(...args);
+}
+
 export function name(): string {
   return (globalThis as any).name;
 }
@@ -333,6 +418,13 @@ export function navigatorFrom(win: any): unknown {
   return (win as any).navigator;
 }
 
+
+export function open(...args: any[]): unknown {
+  return (globalThis as any).open(...args);
+}
+export function openFrom(win: any, ...args: any[]): unknown {
+  return (win as any).open(...args);
+}
 
 export function opener(): unknown {
   return (globalThis as any).opener;
@@ -413,6 +505,55 @@ export function personalbarFrom(win: any): unknown {
   return (win as any).personalbar;
 }
 
+
+export function postMessage(...args: any[]): unknown {
+  return (globalThis as any).postMessage(...args);
+}
+export function postMessageFrom(win: any, ...args: any[]): unknown {
+  return (win as any).postMessage(...args);
+}
+
+export function print(...args: any[]): unknown {
+  return (globalThis as any).print(...args);
+}
+export function printFrom(win: any, ...args: any[]): unknown {
+  return (win as any).print(...args);
+}
+
+export function prompt(...args: any[]): unknown {
+  return (globalThis as any).prompt(...args);
+}
+export function promptFrom(win: any, ...args: any[]): unknown {
+  return (win as any).prompt(...args);
+}
+
+export function queryLocalFonts(...args: any[]): unknown {
+  return (globalThis as any).queryLocalFonts(...args);
+}
+export function queryLocalFontsFrom(win: any, ...args: any[]): unknown {
+  return (win as any).queryLocalFonts(...args);
+}
+
+export function queueMicrotask(...args: any[]): unknown {
+  return (globalThis as any).queueMicrotask(...args);
+}
+export function queueMicrotaskFrom(win: any, ...args: any[]): unknown {
+  return (win as any).queueMicrotask(...args);
+}
+
+export function reportError(...args: any[]): unknown {
+  return (globalThis as any).reportError(...args);
+}
+export function reportErrorFrom(win: any, ...args: any[]): unknown {
+  return (win as any).reportError(...args);
+}
+
+export function requestAnimationFrame(...args: any[]): unknown {
+  return (globalThis as any).requestAnimationFrame(...args);
+}
+export function requestAnimationFrameFrom(win: any, ...args: any[]): unknown {
+  return (win as any).requestAnimationFrame(...args);
+}
 
 export function scheduler(): unknown {
   return (globalThis as any).scheduler;
