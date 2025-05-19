@@ -1,5 +1,16 @@
 import {
+  alert,
+  atob,
+  blur,
+  btoa,
+  cancelAnimationFrame,
+  cancelIdleCallback,
   caches,
+  clearInterval,
+  clearTimeout,
+  close,
+  confirm,
+  createImageBitmap,
   clientInformation,
   closed,
   cookieStore,
@@ -64,6 +75,105 @@ import {
 } from "../../src/window";
 import * as windowModule from "../../src/window";
 import { expect, test } from "bun:test";
+
+test("alert calls global alert", () => {
+  (globalThis as any).alert = (m: any) => `A:${m}`;
+  expect(alert("m")).toBe("A:m");
+});
+test("alertFrom calls alert on passed window", () => {
+  const win: any = { alert: (x: any) => `B:${x}` };
+  expect(windowModule.alertFrom(win, 5)).toBe("B:5");
+});
+
+test("atob calls global atob", () => {
+  (globalThis as any).atob = (d: any) => Buffer.from(d, "base64").toString("binary");
+  expect(atob("YWE=")).toBe("aa");
+});
+test("atobFrom calls atob on passed window", () => {
+  const win: any = { atob: (d: any) => Buffer.from(d, "base64").toString("utf8") };
+  expect(windowModule.atobFrom(win, "Yg==")).toBe("b");
+});
+
+test("blur calls global blur", () => {
+  (globalThis as any).blur = () => "BLUR";
+  expect(blur()).toBe("BLUR");
+});
+test("blurFrom calls blur on passed window", () => {
+  const win: any = { blur: () => "BLUR2" };
+  expect(windowModule.blurFrom(win)).toBe("BLUR2");
+});
+
+test("btoa calls global btoa", () => {
+  (globalThis as any).btoa = (d: any) => `enc:${d}`;
+  expect(btoa("data")).toBe("enc:data");
+});
+test("btoaFrom calls btoa on passed window", () => {
+  const win: any = { btoa: (d: any) => `e:${d}` };
+  expect(windowModule.btoaFrom(win, "d")).toBe("e:d");
+});
+
+test("cancelAnimationFrame calls global cancelAnimationFrame", () => {
+  (globalThis as any).cancelAnimationFrame = (id: any) => id * 2;
+  expect(cancelAnimationFrame(3)).toBe(6);
+});
+test("cancelAnimationFrameFrom calls cancelAnimationFrame on passed window", () => {
+  const win: any = { cancelAnimationFrame: (id: any) => id + 1 };
+  expect(windowModule.cancelAnimationFrameFrom(win, 4)).toBe(5);
+});
+
+test("cancelIdleCallback calls global cancelIdleCallback", () => {
+  (globalThis as any).cancelIdleCallback = (id: any) => id - 1;
+  expect(cancelIdleCallback(7)).toBe(6);
+});
+test("cancelIdleCallbackFrom calls cancelIdleCallback on passed window", () => {
+  const win: any = { cancelIdleCallback: (id: any) => id + 2 };
+  expect(windowModule.cancelIdleCallbackFrom(win, 1)).toBe(3);
+});
+
+test("clearInterval calls global clearInterval", () => {
+  (globalThis as any).clearInterval = (id: any) => `ci:${id}`;
+  expect(clearInterval(8)).toBe("ci:8");
+});
+test("clearIntervalFrom calls clearInterval on passed window", () => {
+  const win: any = { clearInterval: (id: any) => `ciw:${id}` };
+  expect(windowModule.clearIntervalFrom(win, 2)).toBe("ciw:2");
+});
+
+test("clearTimeout calls global clearTimeout", () => {
+  (globalThis as any).clearTimeout = (id: any) => `ct:${id}`;
+  expect(clearTimeout(9)).toBe("ct:9");
+});
+test("clearTimeoutFrom calls clearTimeout on passed window", () => {
+  const win: any = { clearTimeout: (id: any) => `ctw:${id}` };
+  expect(windowModule.clearTimeoutFrom(win, 3)).toBe("ctw:3");
+});
+
+test("close calls global close", () => {
+  (globalThis as any).close = () => "closed";
+  expect(close()).toBe("closed");
+});
+test("closeFrom calls close on passed window", () => {
+  const win: any = { close: () => "c" };
+  expect(windowModule.closeFrom(win)).toBe("c");
+});
+
+test("confirm calls global confirm", () => {
+  (globalThis as any).confirm = (msg: any) => msg === "ok";
+  expect(confirm("ok")).toBe(true);
+});
+test("confirmFrom calls confirm on passed window", () => {
+  const win: any = { confirm: (m: any) => m };
+  expect(windowModule.confirmFrom(win, "y")).toBe("y");
+});
+
+test("createImageBitmap calls global createImageBitmap", () => {
+  (globalThis as any).createImageBitmap = (d: any) => ({ img: d });
+  expect(createImageBitmap("buf")).toEqual({ img: "buf" });
+});
+test("createImageBitmapFrom calls createImageBitmap on passed window", () => {
+  const win: any = { createImageBitmap: (b: any) => ({ w: b }) };
+  expect(windowModule.createImageBitmapFrom(win, 5)).toEqual({ w: 5 });
+});
 
 test("caches returns global caches", () => {
   (globalThis as any).caches = "CACHES_TEST";
@@ -377,8 +487,21 @@ test("window returns global window", () => {
 
 // New tests for instance-specific functions
 const windowInstance: any = {};
+const skipWindowFromFns = [
+  "atobFrom",
+  "alertFrom",
+  "blurFrom",
+  "btoaFrom",
+  "cancelAnimationFrameFrom",
+  "cancelIdleCallbackFrom",
+  "clearIntervalFrom",
+  "clearTimeoutFrom",
+  "closeFrom",
+  "confirmFrom",
+  "createImageBitmapFrom",
+];
 Object.keys(windowModule)
-  .filter((k) => k.endsWith("From"))
+  .filter((k) => k.endsWith("From") && !skipWindowFromFns.includes(k))
   .forEach((fnName, idx) => {
     const prop = fnName.slice(0, -4);
     const propName = prop === "indexedDb" ? "indexedDB" : prop;

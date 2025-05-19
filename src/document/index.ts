@@ -22,6 +22,110 @@ export function adoptedStyleSheetsFrom(doc: any): unknown {
 }
 
 
+export function adoptNode(...args: any[]): unknown {
+  return (globalThis as any).document?.adoptNode(...args);
+}
+export function adoptNodeFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).adoptNode(...args);
+}
+
+
+export function append(...args: any[]): unknown {
+  return (globalThis as any).document?.append(...args);
+}
+export function appendFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).append(...args);
+}
+
+
+export function browsingTopics(...args: any[]): unknown {
+  return (globalThis as any).document?.browsingTopics(...args);
+}
+export function browsingTopicsFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).browsingTopics(...args);
+}
+
+
+export function caretPositionFromPoint(...args: any[]): unknown {
+  return (globalThis as any).document?.caretPositionFromPoint(...args);
+}
+export function caretPositionFromPointFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).caretPositionFromPoint(...args);
+}
+
+
+export function caretRangeFromPoint(...args: any[]): unknown {
+  return (globalThis as any).document?.caretRangeFromPoint(...args);
+}
+export function caretRangeFromPointFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).caretRangeFromPoint(...args);
+}
+
+
+export function createAttribute(...args: any[]): unknown {
+  return (globalThis as any).document?.createAttribute(...args);
+}
+export function createAttributeFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createAttribute(...args);
+}
+
+
+export function createAttributeNS(...args: any[]): unknown {
+  return (globalThis as any).document?.createAttributeNS(...args);
+}
+export function createAttributeNSFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createAttributeNS(...args);
+}
+
+
+export function createCDATASection(...args: any[]): unknown {
+  return (globalThis as any).document?.createCDATASection(...args);
+}
+export function createCDATASectionFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createCDATASection(...args);
+}
+
+
+export function createComment(...args: any[]): unknown {
+  return (globalThis as any).document?.createComment(...args);
+}
+export function createCommentFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createComment(...args);
+}
+
+
+export function createDocumentFragment(...args: any[]): unknown {
+  return (globalThis as any).document?.createDocumentFragment(...args);
+}
+export function createDocumentFragmentFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createDocumentFragment(...args);
+}
+
+
+export function createElement(...args: any[]): unknown {
+  return (globalThis as any).document?.createElement(...args);
+}
+export function createElementFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createElement(...args);
+}
+
+
+export function createElementNS(...args: any[]): unknown {
+  return (globalThis as any).document?.createElementNS(...args);
+}
+export function createElementNSFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createElementNS(...args);
+}
+
+
+export function createEvent(...args: any[]): unknown {
+  return (globalThis as any).document?.createEvent(...args);
+}
+export function createEventFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createEvent(...args);
+}
+
+
 export function body(): unknown {
   return (globalThis as any).document?.body;
 }
