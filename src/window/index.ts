@@ -1,3 +1,91 @@
+export function alert(...args: any[]): unknown {
+  return (globalThis as any).alert(...args);
+}
+export function alertFrom(win: any, ...args: any[]): unknown {
+  return (win as any).alert(...args);
+}
+
+
+export function atob(...args: any[]): unknown {
+  return (globalThis as any).atob(...args);
+}
+export function atobFrom(win: any, ...args: any[]): unknown {
+  return (win as any).atob(...args);
+}
+
+
+export function blur(...args: any[]): unknown {
+  return (globalThis as any).blur(...args);
+}
+export function blurFrom(win: any, ...args: any[]): unknown {
+  return (win as any).blur(...args);
+}
+
+
+export function btoa(...args: any[]): unknown {
+  return (globalThis as any).btoa(...args);
+}
+export function btoaFrom(win: any, ...args: any[]): unknown {
+  return (win as any).btoa(...args);
+}
+
+
+export function cancelAnimationFrame(...args: any[]): unknown {
+  return (globalThis as any).cancelAnimationFrame(...args);
+}
+export function cancelAnimationFrameFrom(win: any, ...args: any[]): unknown {
+  return (win as any).cancelAnimationFrame(...args);
+}
+
+
+export function cancelIdleCallback(...args: any[]): unknown {
+  return (globalThis as any).cancelIdleCallback(...args);
+}
+export function cancelIdleCallbackFrom(win: any, ...args: any[]): unknown {
+  return (win as any).cancelIdleCallback(...args);
+}
+
+
+export function clearInterval(...args: any[]): unknown {
+  return (globalThis as any).clearInterval(...args);
+}
+export function clearIntervalFrom(win: any, ...args: any[]): unknown {
+  return (win as any).clearInterval(...args);
+}
+
+
+export function clearTimeout(...args: any[]): unknown {
+  return (globalThis as any).clearTimeout(...args);
+}
+export function clearTimeoutFrom(win: any, ...args: any[]): unknown {
+  return (win as any).clearTimeout(...args);
+}
+
+
+export function close(...args: any[]): unknown {
+  return (globalThis as any).close(...args);
+}
+export function closeFrom(win: any, ...args: any[]): unknown {
+  return (win as any).close(...args);
+}
+
+
+export function confirm(...args: any[]): unknown {
+  return (globalThis as any).confirm(...args);
+}
+export function confirmFrom(win: any, ...args: any[]): unknown {
+  return (win as any).confirm(...args);
+}
+
+
+export function createImageBitmap(...args: any[]): unknown {
+  return (globalThis as any).createImageBitmap(...args);
+}
+export function createImageBitmapFrom(win: any, ...args: any[]): unknown {
+  return (win as any).createImageBitmap(...args);
+}
+
+
 export function caches(): unknown {
   return (globalThis as any).caches;
 }

@@ -2,6 +2,19 @@ import {
   Document,
   activeElement,
   adoptedStyleSheets,
+  adoptNode,
+  append,
+  browsingTopics,
+  caretPositionFromPoint,
+  caretRangeFromPoint,
+  createAttribute,
+  createAttributeNS,
+  createCDATASection,
+  createComment,
+  createDocumentFragment,
+  createElement,
+  createElementNS,
+  createEvent,
   body,
   characterSet,
   childElementCount,
@@ -64,6 +77,127 @@ test("activeElement returns document.activeElement", () => {
 test("adoptedStyleSheets returns document.adoptedStyleSheets", () => {
   (globalThis as any).document = { adoptedStyleSheets: [1,2,3] };
   expect(adoptedStyleSheets()).toEqual([1,2,3]);
+});
+
+test("adoptNode calls document.adoptNode", () => {
+  (globalThis as any).document = { adoptNode: (n: any) => ({ node: n }) };
+  expect(adoptNode("n")).toEqual({ node: "n" });
+});
+test("adoptNodeFrom calls adoptNode on passed document", () => {
+  const doc: any = { adoptNode: (x: any) => `ad:${x}` };
+  expect(documentModule.adoptNodeFrom(doc, 1)).toBe("ad:1");
+});
+
+test("append calls document.append", () => {
+  (globalThis as any).document = { append: (...a: any[]) => a.join("-") };
+  expect(append("a", "b")).toBe("a-b");
+});
+test("appendFrom calls append on passed document", () => {
+  const doc: any = { append: (...a: any[]) => a.length };
+  expect(documentModule.appendFrom(doc, 1, 2)).toBe(2);
+});
+
+test("browsingTopics calls document.browsingTopics", () => {
+  (globalThis as any).document = { browsingTopics: () => [1] };
+  expect(browsingTopics()).toEqual([1]);
+});
+test("browsingTopicsFrom calls browsingTopics on passed document", () => {
+  const doc: any = { browsingTopics: () => [2] };
+  expect(documentModule.browsingTopicsFrom(doc)).toEqual([2]);
+});
+
+test("caretPositionFromPoint calls document.caretPositionFromPoint", () => {
+  (globalThis as any).document = {
+    caretPositionFromPoint: (x: any, y: any) => x + y,
+  };
+  expect(caretPositionFromPoint(1, 2)).toBe(3);
+});
+test("caretPositionFromPointFrom calls caretPositionFromPoint on passed document", () => {
+  const doc: any = { caretPositionFromPoint: (x: any, y: any) => x * y };
+  expect(documentModule.caretPositionFromPointFrom(doc, 2, 3)).toBe(6);
+});
+
+test("caretRangeFromPoint calls document.caretRangeFromPoint", () => {
+  (globalThis as any).document = {
+    caretRangeFromPoint: (x: any, y: any) => `${x},${y}`,
+  };
+  expect(caretRangeFromPoint(1, 1)).toBe("1,1");
+});
+test("caretRangeFromPointFrom calls caretRangeFromPoint on passed document", () => {
+  const doc: any = { caretRangeFromPoint: () => "r" };
+  expect(documentModule.caretRangeFromPointFrom(doc, 0, 0)).toBe("r");
+});
+
+test("createAttribute calls document.createAttribute", () => {
+  (globalThis as any).document = { createAttribute: (n: any) => ({ n }) };
+  expect(createAttribute("id")).toEqual({ n: "id" });
+});
+test("createAttributeFrom calls createAttribute on passed document", () => {
+  const doc: any = { createAttribute: (n: any) => n.toUpperCase() };
+  expect(documentModule.createAttributeFrom(doc, "x")).toBe("X");
+});
+
+test("createAttributeNS calls document.createAttributeNS", () => {
+  (globalThis as any).document = { createAttributeNS: (ns: any, n: any) => ns+n };
+  expect(createAttributeNS("ns", "n")).toBe("nsn");
+});
+test("createAttributeNSFrom calls createAttributeNS on passed document", () => {
+  const doc: any = { createAttributeNS: (ns: any, n: any) => `${ns}:${n}` };
+  expect(documentModule.createAttributeNSFrom(doc, "a", "b")).toBe("a:b");
+});
+
+test("createCDATASection calls document.createCDATASection", () => {
+  (globalThis as any).document = { createCDATASection: (t: any) => `<${t}>` };
+  expect(createCDATASection("c")).toBe("<c>");
+});
+test("createCDATASectionFrom calls createCDATASection on passed document", () => {
+  const doc: any = { createCDATASection: (t: any) => t };
+  expect(documentModule.createCDATASectionFrom(doc, "t")).toBe("t");
+});
+
+test("createComment calls document.createComment", () => {
+  (globalThis as any).document = { createComment: (t: any) => `c:${t}` };
+  expect(createComment("m")).toBe("c:m");
+});
+test("createCommentFrom calls createComment on passed document", () => {
+  const doc: any = { createComment: () => "d" };
+  expect(documentModule.createCommentFrom(doc, "d")).toBe("d");
+});
+
+test("createDocumentFragment calls document.createDocumentFragment", () => {
+  (globalThis as any).document = { createDocumentFragment: () => "frag" };
+  expect(createDocumentFragment()).toBe("frag");
+});
+test("createDocumentFragmentFrom calls createDocumentFragment on passed document", () => {
+  const doc: any = { createDocumentFragment: () => "df" };
+  expect(documentModule.createDocumentFragmentFrom(doc)).toBe("df");
+});
+
+test("createElement calls document.createElement", () => {
+  (globalThis as any).document = { createElement: (t: any) => ({ t }) };
+  expect(createElement("div")).toEqual({ t: "div" });
+});
+test("createElementFrom calls createElement on passed document", () => {
+  const doc: any = { createElement: (t: any) => t + t };
+  expect(documentModule.createElementFrom(doc, "d")).toBe("dd");
+});
+
+test("createElementNS calls document.createElementNS", () => {
+  (globalThis as any).document = { createElementNS: (ns: any, q: any) => ns+q };
+  expect(createElementNS("s", "q")).toBe("sq");
+});
+test("createElementNSFrom calls createElementNS on passed document", () => {
+  const doc: any = { createElementNS: (ns: any, q: any) => `${ns}/${q}` };
+  expect(documentModule.createElementNSFrom(doc, "n", "q")).toBe("n/q");
+});
+
+test("createEvent calls document.createEvent", () => {
+  (globalThis as any).document = { createEvent: (t: any) => ({ e: t }) };
+  expect(createEvent("evt")).toEqual({ e: "evt" });
+});
+test("createEventFrom calls createEvent on passed document", () => {
+  const doc: any = { createEvent: (t: any) => t };
+  expect(documentModule.createEventFrom(doc, "evt")).toBe("evt");
 });
 
 test("body returns document.body", () => {
@@ -288,8 +422,23 @@ test("URL returns document.URL", () => {
 
 // New tests for instance-specific document functions
 const documentInstance: any = {};
+const skipDocumentFromFns = [
+  "adoptNodeFrom",
+  "appendFrom",
+  "browsingTopicsFrom",
+  "caretPositionFromPointFrom",
+  "caretRangeFromPointFrom",
+  "createAttributeFrom",
+  "createAttributeNSFrom",
+  "createCDATASectionFrom",
+  "createCommentFrom",
+  "createDocumentFragmentFrom",
+  "createElementFrom",
+  "createElementNSFrom",
+  "createEventFrom",
+];
 Object.keys(documentModule)
-  .filter((k) => k.endsWith("From"))
+  .filter((k) => k.endsWith("From") && !skipDocumentFromFns.includes(k))
   .forEach((fnName, idx) => {
     const prop = fnName.slice(0, -4);
     documentInstance[prop] = `doc_${idx}`;
