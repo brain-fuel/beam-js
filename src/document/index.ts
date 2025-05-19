@@ -1,9 +1,6 @@
 export function Document(): unknown {
   return (globalThis as any).Document;
 }
-export function DocumentFrom(doc: any): unknown {
-  return (doc as any).Document;
-}
 
 
 export function activeElement(): unknown {
