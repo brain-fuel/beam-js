@@ -9,7 +9,12 @@ import {
   customElements,
   devicePixelRatio,
   document,
-} from "../src/window";
+  documentPictureInPicture,
+  fence,
+  frameElement,
+  frames,
+  fullScreen,
+} from "../../src/window";
 import { expect, test } from "bun:test";
 
 test("caches returns global caches", () => {
@@ -60,4 +65,29 @@ test("devicePixelRatio returns global devicePixelRatio", () => {
 test("document returns global document", () => {
   (globalThis as any).document = { doc: true };
   expect(document()).toEqual({ doc: true });
+});
+
+test("documentPictureInPicture returns global documentPictureInPicture", () => {
+  (globalThis as any).documentPictureInPicture = { pip: true };
+  expect(documentPictureInPicture()).toEqual({ pip: true });
+});
+
+test("fence returns global fence", () => {
+  (globalThis as any).fence = { fenced: true };
+  expect(fence()).toEqual({ fenced: true });
+});
+
+test("frameElement returns global frameElement", () => {
+  (globalThis as any).frameElement = { frame: 1 };
+  expect(frameElement()).toEqual({ frame: 1 });
+});
+
+test("frames returns global frames", () => {
+  (globalThis as any).frames = { window: 1 };
+  expect(frames()).toEqual({ window: 1 });
+});
+
+test("fullScreen returns global fullScreen", () => {
+  (globalThis as any).fullScreen = true;
+  expect(fullScreen()).toBe(true);
 });

@@ -37,3 +37,23 @@ export function contentType(): string | undefined {
 export function currentScript(): unknown {
   return (globalThis as any).document?.currentScript;
 }
+
+export function doctype(): unknown {
+  return (globalThis as any).document?.doctype;
+}
+
+export function documentElement(): unknown {
+  return (globalThis as any).document?.documentElement;
+}
+
+export function documentURI(): string | undefined {
+  return (globalThis as any).document?.documentURI;
+}
+
+export function embeds(): unknown {
+  return (globalThis as any).document?.embeds;
+}
+
+export function featurePolicy(): unknown {
+  return (globalThis as any).document?.featurePolicy;
+}
