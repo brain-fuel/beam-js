@@ -1,6 +1,6 @@
-# gleam-js
+# beam-js
 
-A wrapper around window, document, event, etc. to be called from Gleam.
+A wrapper around window, document, event, etc. to be called from BEAM languages.
 
 This project uses [Bun](https://bun.sh) to build a small TypeScript library.
 
