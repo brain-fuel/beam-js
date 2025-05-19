@@ -1,7 +1,2 @@
-export function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
-
-export default {
-  greet,
-};
+export * as window from "./window";
+export * as document from "./document";
