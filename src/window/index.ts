@@ -37,3 +37,23 @@ export function devicePixelRatio(): number {
 export function document(): unknown {
   return (globalThis as any).document;
 }
+
+export function documentPictureInPicture(): unknown {
+  return (globalThis as any).documentPictureInPicture;
+}
+
+export function fence(): unknown {
+  return (globalThis as any).fence;
+}
+
+export function frameElement(): unknown {
+  return (globalThis as any).frameElement;
+}
+
+export function frames(): unknown {
+  return (globalThis as any).frames;
+}
+
+export function fullScreen(): boolean {
+  return (globalThis as any).fullScreen;
+}

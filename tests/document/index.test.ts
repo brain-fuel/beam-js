@@ -9,7 +9,12 @@ import {
   compatMode,
   contentType,
   currentScript,
-} from "../src/document";
+  doctype,
+  documentElement,
+  documentURI,
+  embeds,
+  featurePolicy,
+} from "../../src/document";
 import { expect, test } from "bun:test";
 
 test("Document returns global Document", () => {
@@ -61,4 +66,29 @@ test("contentType returns document.contentType", () => {
 test("currentScript returns document.currentScript", () => {
   (globalThis as any).document = { currentScript: "script.js" };
   expect(currentScript()).toBe("script.js");
+});
+
+test("doctype returns document.doctype", () => {
+  (globalThis as any).document = { doctype: "doctype" };
+  expect(doctype()).toBe("doctype");
+});
+
+test("documentElement returns document.documentElement", () => {
+  (globalThis as any).document = { documentElement: { node: true } };
+  expect(documentElement()).toEqual({ node: true });
+});
+
+test("documentURI returns document.documentURI", () => {
+  (globalThis as any).document = { documentURI: "http://example" };
+  expect(documentURI()).toBe("http://example");
+});
+
+test("embeds returns document.embeds", () => {
+  (globalThis as any).document = { embeds: [1, 2] };
+  expect(embeds()).toEqual([1, 2]);
+});
+
+test("featurePolicy returns document.featurePolicy", () => {
+  (globalThis as any).document = { featurePolicy: { features: true } };
+  expect(featurePolicy()).toEqual({ features: true });
 });
