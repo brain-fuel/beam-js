@@ -77,3 +77,27 @@ export function fragmentDirective(): unknown {
 export function fullscreenElement(): unknown {
   return (globalThis as any).document?.fullscreenElement;
 }
+
+export function head(): unknown {
+  return (globalThis as any).document?.head;
+}
+
+export function hidden(): boolean | undefined {
+  return (globalThis as any).document?.hidden;
+}
+
+export function images(): unknown {
+  return (globalThis as any).document?.images;
+}
+
+export function implementation(): unknown {
+  return (globalThis as any).document?.implementation;
+}
+
+export function lastElementChild(): unknown {
+  return (globalThis as any).document?.lastElementChild;
+}
+
+export function links(): unknown {
+  return (globalThis as any).document?.links;
+}

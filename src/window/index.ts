@@ -81,3 +81,43 @@ export function isSecureContext(): boolean {
 export function launchQueue(): unknown {
   return (globalThis as any).launchQueue;
 }
+
+export function length(): number {
+  return (globalThis as any).length;
+}
+
+export function localStorage(): unknown {
+  return (globalThis as any).localStorage;
+}
+
+export function location(): unknown {
+  return (globalThis as any).location;
+}
+
+export function locationbar(): unknown {
+  return (globalThis as any).locationbar;
+}
+
+export function menubar(): unknown {
+  return (globalThis as any).menubar;
+}
+
+export function mozInnerScreenX(): number {
+  return (globalThis as any).mozInnerScreenX;
+}
+
+export function mozInnerScreenY(): number {
+  return (globalThis as any).mozInnerScreenY;
+}
+
+export function name(): string {
+  return (globalThis as any).name;
+}
+
+export function navigation(): unknown {
+  return (globalThis as any).navigation;
+}
+
+export function navigator(): unknown {
+  return (globalThis as any).navigator;
+}
