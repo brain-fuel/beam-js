@@ -20,6 +20,16 @@ import {
   innerWidth,
   isSecureContext,
   launchQueue,
+  length,
+  localStorage,
+  location,
+  locationbar,
+  menubar,
+  mozInnerScreenX,
+  mozInnerScreenY,
+  name,
+  navigation,
+  navigator,
 } from "../../src/window";
 import { expect, test } from "bun:test";
 
@@ -126,4 +136,54 @@ test("isSecureContext returns global isSecureContext", () => {
 test("launchQueue returns global launchQueue", () => {
   (globalThis as any).launchQueue = { queue: true };
   expect(launchQueue()).toEqual({ queue: true });
+});
+
+test("length returns global length", () => {
+  (globalThis as any).length = 42;
+  expect(length()).toBe(42);
+});
+
+test("localStorage returns global localStorage", () => {
+  (globalThis as any).localStorage = { storage: true };
+  expect(localStorage()).toEqual({ storage: true });
+});
+
+test("location returns global location", () => {
+  (globalThis as any).location = { href: "http://example" };
+  expect(location()).toEqual({ href: "http://example" });
+});
+
+test("locationbar returns global locationbar", () => {
+  (globalThis as any).locationbar = { bar: true };
+  expect(locationbar()).toEqual({ bar: true });
+});
+
+test("menubar returns global menubar", () => {
+  (globalThis as any).menubar = { menu: true };
+  expect(menubar()).toEqual({ menu: true });
+});
+
+test("mozInnerScreenX returns global mozInnerScreenX", () => {
+  (globalThis as any).mozInnerScreenX = 1;
+  expect(mozInnerScreenX()).toBe(1);
+});
+
+test("mozInnerScreenY returns global mozInnerScreenY", () => {
+  (globalThis as any).mozInnerScreenY = 2;
+  expect(mozInnerScreenY()).toBe(2);
+});
+
+test("name returns global name", () => {
+  (globalThis as any).name = "win";
+  expect(name()).toBe("win");
+});
+
+test("navigation returns global navigation", () => {
+  (globalThis as any).navigation = { nav: true };
+  expect(navigation()).toEqual({ nav: true });
+});
+
+test("navigator returns global navigator", () => {
+  (globalThis as any).navigator = { ua: "test" };
+  expect(navigator()).toEqual({ ua: "test" });
 });

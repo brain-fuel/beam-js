@@ -19,6 +19,12 @@ import {
   forms,
   fragmentDirective,
   fullscreenElement,
+  head,
+  hidden,
+  images,
+  implementation,
+  lastElementChild,
+  links,
 } from "../../src/document";
 import { expect, test } from "bun:test";
 
@@ -121,4 +127,34 @@ test("fragmentDirective returns document.fragmentDirective", () => {
 test("fullscreenElement returns document.fullscreenElement", () => {
   (globalThis as any).document = { fullscreenElement: { el: true } };
   expect(fullscreenElement()).toEqual({ el: true });
+});
+
+test("head returns document.head", () => {
+  (globalThis as any).document = { head: { head: true } };
+  expect(head()).toEqual({ head: true });
+});
+
+test("hidden returns document.hidden", () => {
+  (globalThis as any).document = { hidden: false };
+  expect(hidden()).toBe(false);
+});
+
+test("images returns document.images", () => {
+  (globalThis as any).document = { images: [1, 2] };
+  expect(images()).toEqual([1, 2]);
+});
+
+test("implementation returns document.implementation", () => {
+  (globalThis as any).document = { implementation: { impl: true } };
+  expect(implementation()).toEqual({ impl: true });
+});
+
+test("lastElementChild returns document.lastElementChild", () => {
+  (globalThis as any).document = { lastElementChild: { last: 1 } };
+  expect(lastElementChild()).toEqual({ last: 1 });
+});
+
+test("links returns document.links", () => {
+  (globalThis as any).document = { links: ["a"] };
+  expect(links()).toEqual(["a"]);
 });
