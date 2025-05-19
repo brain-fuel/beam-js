@@ -121,3 +121,43 @@ export function navigation(): unknown {
 export function navigator(): unknown {
   return (globalThis as any).navigator;
 }
+
+export function opener(): unknown {
+  return (globalThis as any).opener;
+}
+
+export function origin(): string {
+  return (globalThis as any).origin;
+}
+
+export function originAgentCluster(): unknown {
+  return (globalThis as any).originAgentCluster;
+}
+
+export function outerHeight(): number {
+  return (globalThis as any).outerHeight;
+}
+
+export function outerWidth(): number {
+  return (globalThis as any).outerWidth;
+}
+
+export function pageXOffset(): number {
+  return (globalThis as any).pageXOffset;
+}
+
+export function pageYOffset(): number {
+  return (globalThis as any).pageYOffset;
+}
+
+export function parent(): unknown {
+  return (globalThis as any).parent;
+}
+
+export function performance(): unknown {
+  return (globalThis as any).performance;
+}
+
+export function personalbar(): unknown {
+  return (globalThis as any).personalbar;
+}

@@ -101,3 +101,43 @@ export function lastElementChild(): unknown {
 export function links(): unknown {
   return (globalThis as any).document?.links;
 }
+
+export function pictureInPictureElement(): unknown {
+  return (globalThis as any).document?.pictureInPictureElement;
+}
+
+export function pictureInPictureEnabled(): boolean | undefined {
+  return (globalThis as any).document?.pictureInPictureEnabled;
+}
+
+export function plugins(): unknown {
+  return (globalThis as any).document?.plugins;
+}
+
+export function pointerLockElement(): unknown {
+  return (globalThis as any).document?.pointerLockElement;
+}
+
+export function prerendering(): boolean | undefined {
+  return (globalThis as any).document?.prerendering;
+}
+
+export function scripts(): unknown {
+  return (globalThis as any).document?.scripts;
+}
+
+export function scrollingElement(): unknown {
+  return (globalThis as any).document?.scrollingElement;
+}
+
+export function styleSheets(): unknown {
+  return (globalThis as any).document?.styleSheets;
+}
+
+export function timeline(): unknown {
+  return (globalThis as any).document?.timeline;
+}
+
+export function visibilityState(): unknown {
+  return (globalThis as any).document?.visibilityState;
+}
