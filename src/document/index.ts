@@ -141,3 +141,47 @@ export function timeline(): unknown {
 export function visibilityState(): unknown {
   return (globalThis as any).document?.visibilityState;
 }
+
+export function cookie(): string | undefined {
+  return (globalThis as any).document?.cookie;
+}
+
+export function defaultView(): unknown {
+  return (globalThis as any).document?.defaultView;
+}
+
+export function designMode(): string | undefined {
+  return (globalThis as any).document?.designMode;
+}
+
+export function dir(): string | undefined {
+  return (globalThis as any).document?.dir;
+}
+
+export function fullscreenEnabled(): boolean | undefined {
+  return (globalThis as any).document?.fullscreenEnabled;
+}
+
+export function lastModified(): string | undefined {
+  return (globalThis as any).document?.lastModified;
+}
+
+export function location(): unknown {
+  return (globalThis as any).document?.location;
+}
+
+export function readyState(): string | undefined {
+  return (globalThis as any).document?.readyState;
+}
+
+export function referrer(): string | undefined {
+  return (globalThis as any).document?.referrer;
+}
+
+export function title(): string | undefined {
+  return (globalThis as any).document?.title;
+}
+
+export function URL(): string | undefined {
+  return (globalThis as any).document?.URL;
+}

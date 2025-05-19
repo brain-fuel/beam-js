@@ -161,3 +161,87 @@ export function performance(): unknown {
 export function personalbar(): unknown {
   return (globalThis as any).personalbar;
 }
+
+export function scheduler(): unknown {
+  return (globalThis as any).scheduler;
+}
+
+export function screen(): unknown {
+  return (globalThis as any).screen;
+}
+
+export function screenLeft(): number {
+  return (globalThis as any).screenLeft;
+}
+
+export function screenTop(): number {
+  return (globalThis as any).screenTop;
+}
+
+export function screenX(): number {
+  return (globalThis as any).screenX;
+}
+
+export function screenY(): number {
+  return (globalThis as any).screenY;
+}
+
+export function scrollMaxX(): number {
+  return (globalThis as any).scrollMaxX;
+}
+
+export function scrollMaxY(): number {
+  return (globalThis as any).scrollMaxY;
+}
+
+export function scrollX(): number {
+  return (globalThis as any).scrollX;
+}
+
+export function scrollY(): number {
+  return (globalThis as any).scrollY;
+}
+
+export function scrollbars(): unknown {
+  return (globalThis as any).scrollbars;
+}
+
+export function self(): unknown {
+  return (globalThis as any).self;
+}
+
+export function sessionStorage(): unknown {
+  return (globalThis as any).sessionStorage;
+}
+
+export function sharedStorage(): unknown {
+  return (globalThis as any).sharedStorage;
+}
+
+export function speechSynthesis(): unknown {
+  return (globalThis as any).speechSynthesis;
+}
+
+export function statusbar(): unknown {
+  return (globalThis as any).statusbar;
+}
+
+export function toolbar(): unknown {
+  return (globalThis as any).toolbar;
+}
+
+export function top(): unknown {
+  return (globalThis as any).top;
+}
+
+export function trustedTypes(): unknown {
+  return (globalThis as any).trustedTypes;
+}
+
+export function visualViewport(): unknown {
+  return (globalThis as any).visualViewport;
+}
+
+export function window(): unknown {
+  return (globalThis as any).window;
+}

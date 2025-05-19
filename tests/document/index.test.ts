@@ -35,6 +35,17 @@ import {
   styleSheets,
   timeline,
   visibilityState,
+  cookie,
+  defaultView,
+  designMode,
+  dir,
+  fullscreenEnabled,
+  lastModified,
+  location,
+  readyState,
+  referrer,
+  title,
+  URL,
 } from "../../src/document";
 import { expect, test } from "bun:test";
 
@@ -217,4 +228,59 @@ test("timeline returns document.timeline", () => {
 test("visibilityState returns document.visibilityState", () => {
   (globalThis as any).document = { visibilityState: "visible" };
   expect(visibilityState()).toBe("visible");
+});
+
+test("cookie returns document.cookie", () => {
+  (globalThis as any).document = { cookie: "a=b" };
+  expect(cookie()).toBe("a=b");
+});
+
+test("defaultView returns document.defaultView", () => {
+  (globalThis as any).document = { defaultView: { win: true } };
+  expect(defaultView()).toEqual({ win: true });
+});
+
+test("designMode returns document.designMode", () => {
+  (globalThis as any).document = { designMode: "on" };
+  expect(designMode()).toBe("on");
+});
+
+test("dir returns document.dir", () => {
+  (globalThis as any).document = { dir: "ltr" };
+  expect(dir()).toBe("ltr");
+});
+
+test("fullscreenEnabled returns document.fullscreenEnabled", () => {
+  (globalThis as any).document = { fullscreenEnabled: true };
+  expect(fullscreenEnabled()).toBe(true);
+});
+
+test("lastModified returns document.lastModified", () => {
+  (globalThis as any).document = { lastModified: "today" };
+  expect(lastModified()).toBe("today");
+});
+
+test("location returns document.location", () => {
+  (globalThis as any).document = { location: { href: "http://example" } };
+  expect(location()).toEqual({ href: "http://example" });
+});
+
+test("readyState returns document.readyState", () => {
+  (globalThis as any).document = { readyState: "complete" };
+  expect(readyState()).toBe("complete");
+});
+
+test("referrer returns document.referrer", () => {
+  (globalThis as any).document = { referrer: "http://ref" };
+  expect(referrer()).toBe("http://ref");
+});
+
+test("title returns document.title", () => {
+  (globalThis as any).document = { title: "My Page" };
+  expect(title()).toBe("My Page");
+});
+
+test("URL returns document.URL", () => {
+  (globalThis as any).document = { URL: "http://url" };
+  expect(URL()).toBe("http://url");
 });

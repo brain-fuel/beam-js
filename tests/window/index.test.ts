@@ -40,6 +40,27 @@ import {
   parent,
   performance,
   personalbar,
+  scheduler,
+  screen,
+  screenLeft,
+  screenTop,
+  screenX,
+  screenY,
+  scrollMaxX,
+  scrollMaxY,
+  scrollX,
+  scrollY,
+  scrollbars,
+  self,
+  sessionStorage,
+  sharedStorage,
+  speechSynthesis,
+  statusbar,
+  toolbar,
+  top,
+  trustedTypes,
+  visualViewport,
+  window,
 } from "../../src/window";
 import { expect, test } from "bun:test";
 
@@ -246,4 +267,109 @@ test("performance returns global performance", () => {
 test("personalbar returns global personalbar", () => {
   (globalThis as any).personalbar = { bar: 1 };
   expect(personalbar()).toEqual({ bar: 1 });
+});
+
+test("scheduler returns global scheduler", () => {
+  (globalThis as any).scheduler = { schedule: true };
+  expect(scheduler()).toEqual({ schedule: true });
+});
+
+test("screen returns global screen", () => {
+  (globalThis as any).screen = { colorDepth: 24 };
+  expect(screen()).toEqual({ colorDepth: 24 });
+});
+
+test("screenLeft returns global screenLeft", () => {
+  (globalThis as any).screenLeft = 10;
+  expect(screenLeft()).toBe(10);
+});
+
+test("screenTop returns global screenTop", () => {
+  (globalThis as any).screenTop = 20;
+  expect(screenTop()).toBe(20);
+});
+
+test("screenX returns global screenX", () => {
+  (globalThis as any).screenX = 30;
+  expect(screenX()).toBe(30);
+});
+
+test("screenY returns global screenY", () => {
+  (globalThis as any).screenY = 40;
+  expect(screenY()).toBe(40);
+});
+
+test("scrollMaxX returns global scrollMaxX", () => {
+  (globalThis as any).scrollMaxX = 50;
+  expect(scrollMaxX()).toBe(50);
+});
+
+test("scrollMaxY returns global scrollMaxY", () => {
+  (globalThis as any).scrollMaxY = 60;
+  expect(scrollMaxY()).toBe(60);
+});
+
+test("scrollX returns global scrollX", () => {
+  (globalThis as any).scrollX = 70;
+  expect(scrollX()).toBe(70);
+});
+
+test("scrollY returns global scrollY", () => {
+  (globalThis as any).scrollY = 80;
+  expect(scrollY()).toBe(80);
+});
+
+test("scrollbars returns global scrollbars", () => {
+  (globalThis as any).scrollbars = { present: true };
+  expect(scrollbars()).toEqual({ present: true });
+});
+
+test("self returns global self", () => {
+  (globalThis as any).self = { self: true };
+  expect(self()).toEqual({ self: true });
+});
+
+test("sessionStorage returns global sessionStorage", () => {
+  (globalThis as any).sessionStorage = { session: 1 };
+  expect(sessionStorage()).toEqual({ session: 1 });
+});
+
+test("sharedStorage returns global sharedStorage", () => {
+  (globalThis as any).sharedStorage = { shared: true };
+  expect(sharedStorage()).toEqual({ shared: true });
+});
+
+test("speechSynthesis returns global speechSynthesis", () => {
+  (globalThis as any).speechSynthesis = { speak: true };
+  expect(speechSynthesis()).toEqual({ speak: true });
+});
+
+test("statusbar returns global statusbar", () => {
+  (globalThis as any).statusbar = { visible: false };
+  expect(statusbar()).toEqual({ visible: false });
+});
+
+test("toolbar returns global toolbar", () => {
+  (globalThis as any).toolbar = { tools: 1 };
+  expect(toolbar()).toEqual({ tools: 1 });
+});
+
+test("top returns global top", () => {
+  (globalThis as any).top = { top: true };
+  expect(top()).toEqual({ top: true });
+});
+
+test("trustedTypes returns global trustedTypes", () => {
+  (globalThis as any).trustedTypes = { trust: true };
+  expect(trustedTypes()).toEqual({ trust: true });
+});
+
+test("visualViewport returns global visualViewport", () => {
+  (globalThis as any).visualViewport = { height: 100 };
+  expect(visualViewport()).toEqual({ height: 100 });
+});
+
+test("window returns global window", () => {
+  (globalThis as any).window = { w: 1 };
+  expect(window()).toEqual({ w: 1 });
 });
