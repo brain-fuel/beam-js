@@ -1,187 +1,374 @@
 export function Document(): unknown {
   return (globalThis as any).Document;
 }
+export function DocumentFrom(doc: any): unknown {
+  return (doc as any).Document;
+}
+
 
 export function activeElement(): unknown {
   return (globalThis as any).document?.activeElement;
 }
+export function activeElementFrom(doc: any): unknown {
+  return (doc as any).activeElement;
+}
+
 
 export function adoptedStyleSheets(): unknown {
   return (globalThis as any).document?.adoptedStyleSheets;
 }
+export function adoptedStyleSheetsFrom(doc: any): unknown {
+  return (doc as any).adoptedStyleSheets;
+}
+
 
 export function body(): unknown {
   return (globalThis as any).document?.body;
 }
+export function bodyFrom(doc: any): unknown {
+  return (doc as any).body;
+}
+
 
 export function characterSet(): string | undefined {
   return (globalThis as any).document?.characterSet;
 }
+export function characterSetFrom(doc: any): unknown {
+  return (doc as any).characterSet;
+}
+
 
 export function childElementCount(): number | undefined {
   return (globalThis as any).document?.childElementCount;
 }
+export function childElementCountFrom(doc: any): unknown {
+  return (doc as any).childElementCount;
+}
+
 
 export function children(): unknown {
   return (globalThis as any).document?.children;
 }
+export function childrenFrom(doc: any): unknown {
+  return (doc as any).children;
+}
+
 
 export function compatMode(): string | undefined {
   return (globalThis as any).document?.compatMode;
 }
+export function compatModeFrom(doc: any): unknown {
+  return (doc as any).compatMode;
+}
+
 
 export function contentType(): string | undefined {
   return (globalThis as any).document?.contentType;
 }
+export function contentTypeFrom(doc: any): unknown {
+  return (doc as any).contentType;
+}
+
 
 export function currentScript(): unknown {
   return (globalThis as any).document?.currentScript;
 }
+export function currentScriptFrom(doc: any): unknown {
+  return (doc as any).currentScript;
+}
+
 
 export function doctype(): unknown {
   return (globalThis as any).document?.doctype;
 }
+export function doctypeFrom(doc: any): unknown {
+  return (doc as any).doctype;
+}
+
 
 export function documentElement(): unknown {
   return (globalThis as any).document?.documentElement;
 }
+export function documentElementFrom(doc: any): unknown {
+  return (doc as any).documentElement;
+}
+
 
 export function documentURI(): string | undefined {
   return (globalThis as any).document?.documentURI;
 }
+export function documentURIFrom(doc: any): unknown {
+  return (doc as any).documentURI;
+}
+
 
 export function embeds(): unknown {
   return (globalThis as any).document?.embeds;
 }
+export function embedsFrom(doc: any): unknown {
+  return (doc as any).embeds;
+}
+
 
 export function featurePolicy(): unknown {
   return (globalThis as any).document?.featurePolicy;
 }
+export function featurePolicyFrom(doc: any): unknown {
+  return (doc as any).featurePolicy;
+}
+
 
 export function firstElementChild(): unknown {
   return (globalThis as any).document?.firstElementChild;
 }
+export function firstElementChildFrom(doc: any): unknown {
+  return (doc as any).firstElementChild;
+}
+
 
 export function fonts(): unknown {
   return (globalThis as any).document?.fonts;
 }
+export function fontsFrom(doc: any): unknown {
+  return (doc as any).fonts;
+}
+
 
 export function forms(): unknown {
   return (globalThis as any).document?.forms;
 }
+export function formsFrom(doc: any): unknown {
+  return (doc as any).forms;
+}
+
 
 export function fragmentDirective(): unknown {
   return (globalThis as any).document?.fragmentDirective;
 }
+export function fragmentDirectiveFrom(doc: any): unknown {
+  return (doc as any).fragmentDirective;
+}
+
 
 export function fullscreenElement(): unknown {
   return (globalThis as any).document?.fullscreenElement;
 }
+export function fullscreenElementFrom(doc: any): unknown {
+  return (doc as any).fullscreenElement;
+}
+
 
 export function head(): unknown {
   return (globalThis as any).document?.head;
 }
+export function headFrom(doc: any): unknown {
+  return (doc as any).head;
+}
+
 
 export function hidden(): boolean | undefined {
   return (globalThis as any).document?.hidden;
 }
+export function hiddenFrom(doc: any): unknown {
+  return (doc as any).hidden;
+}
+
 
 export function images(): unknown {
   return (globalThis as any).document?.images;
 }
+export function imagesFrom(doc: any): unknown {
+  return (doc as any).images;
+}
+
 
 export function implementation(): unknown {
   return (globalThis as any).document?.implementation;
 }
+export function implementationFrom(doc: any): unknown {
+  return (doc as any).implementation;
+}
+
 
 export function lastElementChild(): unknown {
   return (globalThis as any).document?.lastElementChild;
 }
+export function lastElementChildFrom(doc: any): unknown {
+  return (doc as any).lastElementChild;
+}
+
 
 export function links(): unknown {
   return (globalThis as any).document?.links;
 }
+export function linksFrom(doc: any): unknown {
+  return (doc as any).links;
+}
+
 
 export function pictureInPictureElement(): unknown {
   return (globalThis as any).document?.pictureInPictureElement;
 }
+export function pictureInPictureElementFrom(doc: any): unknown {
+  return (doc as any).pictureInPictureElement;
+}
+
 
 export function pictureInPictureEnabled(): boolean | undefined {
   return (globalThis as any).document?.pictureInPictureEnabled;
 }
+export function pictureInPictureEnabledFrom(doc: any): unknown {
+  return (doc as any).pictureInPictureEnabled;
+}
+
 
 export function plugins(): unknown {
   return (globalThis as any).document?.plugins;
 }
+export function pluginsFrom(doc: any): unknown {
+  return (doc as any).plugins;
+}
+
 
 export function pointerLockElement(): unknown {
   return (globalThis as any).document?.pointerLockElement;
 }
+export function pointerLockElementFrom(doc: any): unknown {
+  return (doc as any).pointerLockElement;
+}
+
 
 export function prerendering(): boolean | undefined {
   return (globalThis as any).document?.prerendering;
 }
+export function prerenderingFrom(doc: any): unknown {
+  return (doc as any).prerendering;
+}
+
 
 export function scripts(): unknown {
   return (globalThis as any).document?.scripts;
 }
+export function scriptsFrom(doc: any): unknown {
+  return (doc as any).scripts;
+}
+
 
 export function scrollingElement(): unknown {
   return (globalThis as any).document?.scrollingElement;
 }
+export function scrollingElementFrom(doc: any): unknown {
+  return (doc as any).scrollingElement;
+}
+
 
 export function styleSheets(): unknown {
   return (globalThis as any).document?.styleSheets;
 }
+export function styleSheetsFrom(doc: any): unknown {
+  return (doc as any).styleSheets;
+}
+
 
 export function timeline(): unknown {
   return (globalThis as any).document?.timeline;
 }
+export function timelineFrom(doc: any): unknown {
+  return (doc as any).timeline;
+}
+
 
 export function visibilityState(): unknown {
   return (globalThis as any).document?.visibilityState;
 }
+export function visibilityStateFrom(doc: any): unknown {
+  return (doc as any).visibilityState;
+}
+
 
 export function cookie(): string | undefined {
   return (globalThis as any).document?.cookie;
 }
+export function cookieFrom(doc: any): unknown {
+  return (doc as any).cookie;
+}
+
 
 export function defaultView(): unknown {
   return (globalThis as any).document?.defaultView;
 }
+export function defaultViewFrom(doc: any): unknown {
+  return (doc as any).defaultView;
+}
+
 
 export function designMode(): string | undefined {
   return (globalThis as any).document?.designMode;
 }
+export function designModeFrom(doc: any): unknown {
+  return (doc as any).designMode;
+}
+
 
 export function dir(): string | undefined {
   return (globalThis as any).document?.dir;
 }
+export function dirFrom(doc: any): unknown {
+  return (doc as any).dir;
+}
+
 
 export function fullscreenEnabled(): boolean | undefined {
   return (globalThis as any).document?.fullscreenEnabled;
 }
+export function fullscreenEnabledFrom(doc: any): unknown {
+  return (doc as any).fullscreenEnabled;
+}
+
 
 export function lastModified(): string | undefined {
   return (globalThis as any).document?.lastModified;
 }
+export function lastModifiedFrom(doc: any): unknown {
+  return (doc as any).lastModified;
+}
+
 
 export function location(): unknown {
   return (globalThis as any).document?.location;
 }
+export function locationFrom(doc: any): unknown {
+  return (doc as any).location;
+}
+
 
 export function readyState(): string | undefined {
   return (globalThis as any).document?.readyState;
 }
+export function readyStateFrom(doc: any): unknown {
+  return (doc as any).readyState;
+}
+
 
 export function referrer(): string | undefined {
   return (globalThis as any).document?.referrer;
 }
+export function referrerFrom(doc: any): unknown {
+  return (doc as any).referrer;
+}
+
 
 export function title(): string | undefined {
   return (globalThis as any).document?.title;
 }
+export function titleFrom(doc: any): unknown {
+  return (doc as any).title;
+}
+
 
 export function URL(): string | undefined {
   return (globalThis as any).document?.URL;
+}
+export function URLFrom(doc: any): unknown {
+  return (doc as any).URL;
 }

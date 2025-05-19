@@ -62,6 +62,7 @@ import {
   visualViewport,
   window,
 } from "../../src/window";
+import * as windowModule from "../../src/window";
 import { expect, test } from "bun:test";
 
 test("caches returns global caches", () => {
@@ -373,3 +374,18 @@ test("window returns global window", () => {
   (globalThis as any).window = { w: 1 };
   expect(window()).toEqual({ w: 1 });
 });
+
+// New tests for instance-specific functions
+const windowInstance: any = {};
+Object.keys(windowModule)
+  .filter((k) => k.endsWith("From"))
+  .forEach((fnName, idx) => {
+    const prop = fnName.slice(0, -4);
+    const propName = prop === "indexedDb" ? "indexedDB" : prop;
+    windowInstance[propName] = `val_${idx}`;
+    test(`${fnName} returns ${propName} from passed window`, () => {
+      expect((windowModule as any)[fnName](windowInstance)).toEqual(
+        windowInstance[propName]
+      );
+    });
+  });

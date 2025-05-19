@@ -47,6 +47,7 @@ import {
   title,
   URL,
 } from "../../src/document";
+import * as documentModule from "../../src/document";
 import { expect, test } from "bun:test";
 
 test("Document returns global Document", () => {
@@ -284,3 +285,17 @@ test("URL returns document.URL", () => {
   (globalThis as any).document = { URL: "http://url" };
   expect(URL()).toBe("http://url");
 });
+
+// New tests for instance-specific document functions
+const documentInstance: any = {};
+Object.keys(documentModule)
+  .filter((k) => k.endsWith("From"))
+  .forEach((fnName, idx) => {
+    const prop = fnName.slice(0, -4);
+    documentInstance[prop] = `doc_${idx}`;
+    test(`${fnName} returns ${prop} from passed document`, () => {
+      expect((documentModule as any)[fnName](documentInstance)).toEqual(
+        documentInstance[prop]
+      );
+    });
+  });
