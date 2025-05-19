@@ -1,0 +1,17 @@
+{
+  "name": "gleam-js",
+  "version": "0.1.0",
+  "description": "A wrapper around window, document, event, etc. to be called from Gleam.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  }
+}
