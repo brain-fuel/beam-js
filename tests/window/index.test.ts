@@ -37,6 +37,11 @@ test("btoaFrom calls btoa on passed window", () => {
   expect(windowModule.btoaFrom(win, "d")).toBe("e:d");
 });
 
+test("caches returns global caches", () => {
+  (globalThis as any).caches = "CACHES_TEST";
+  expect(windowModule.caches()).toBe("CACHES_TEST");
+});
+
 test("cancelAnimationFrame calls global cancelAnimationFrame", () => {
   (globalThis as any).cancelAnimationFrame = (id: any) => id * 2;
   expect(windowModule.cancelAnimationFrame(3)).toBe(6);
@@ -73,6 +78,11 @@ test("clearTimeoutFrom calls clearTimeout on passed window", () => {
   expect(windowModule.clearTimeoutFrom(win, 3)).toBe("ctw:3");
 });
 
+test("clientInformation returns global clientInformation", () => {
+  (globalThis as any).clientInformation = { info: true };
+  expect(windowModule.clientInformation()).toEqual({ info: true });
+});
+
 test("close calls global close", () => {
   (globalThis as any).close = () => "closed";
   expect(windowModule.close()).toBe("closed");
@@ -80,6 +90,11 @@ test("close calls global close", () => {
 test("closeFrom calls close on passed window", () => {
   const win: any = { close: () => "c" };
   expect(windowModule.closeFrom(win)).toBe("c");
+});
+
+test("closed returns global closed", () => {
+  (globalThis as any).closed = true;
+  expect(windowModule.closed()).toBe(true);
 });
 
 test("confirm calls global confirm", () => {
@@ -91,6 +106,11 @@ test("confirmFrom calls confirm on passed window", () => {
   expect(windowModule.confirmFrom(win, "y")).toBe("y");
 });
 
+test("cookieStore returns global cookieStore", () => {
+  (globalThis as any).cookieStore = { store: 1 };
+  expect(windowModule.cookieStore()).toEqual({ store: 1 });
+});
+
 test("createImageBitmap calls global createImageBitmap", () => {
   (globalThis as any).createImageBitmap = (d: any) => ({ img: d });
   expect(windowModule.createImageBitmap("buf")).toEqual({ img: "buf" });
@@ -98,26 +118,6 @@ test("createImageBitmap calls global createImageBitmap", () => {
 test("createImageBitmapFrom calls createImageBitmap on passed window", () => {
   const win: any = { createImageBitmap: (b: any) => ({ w: b }) };
   expect(windowModule.createImageBitmapFrom(win, 5)).toEqual({ w: 5 });
-});
-
-test("caches returns global caches", () => {
-  (globalThis as any).caches = "CACHES_TEST";
-  expect(windowModule.caches()).toBe("CACHES_TEST");
-});
-
-test("clientInformation returns global clientInformation", () => {
-  (globalThis as any).clientInformation = { info: true };
-  expect(windowModule.clientInformation()).toEqual({ info: true });
-});
-
-test("closed returns global closed", () => {
-  (globalThis as any).closed = true;
-  expect(windowModule.closed()).toBe(true);
-});
-
-test("cookieStore returns global cookieStore", () => {
-  (globalThis as any).cookieStore = { store: 1 };
-  expect(windowModule.cookieStore()).toEqual({ store: 1 });
 });
 
 test("credentialless returns global credentialless", () => {
@@ -164,6 +164,11 @@ test("dumpFrom calls dump on passed window", () => {
   expect(windowModule.dumpFrom(win, 1, 2, 3)).toBe(3);
 });
 
+test("fence returns global fence", () => {
+  (globalThis as any).fence = { fenced: true };
+  expect(windowModule.fence()).toEqual({ fenced: true });
+});
+
 test("fetch calls global fetch", () => {
   (globalThis as any).fetch = (u: any) => `F:${u}`;
   expect(windowModule.fetch("url")).toBe("F:url");
@@ -198,11 +203,6 @@ test("focus calls global focus", () => {
 test("focusFrom calls focus on passed window", () => {
   const win: any = { focus: () => "WF" };
   expect(windowModule.focusFrom(win)).toBe("WF");
-});
-
-test("fence returns global fence", () => {
-  (globalThis as any).fence = { fenced: true };
-  expect(windowModule.fence()).toEqual({ fenced: true });
 });
 
 test("frameElement returns global frameElement", () => {
@@ -320,16 +320,6 @@ test("menubar returns global menubar", () => {
   expect(windowModule.menubar()).toEqual({ menu: true });
 });
 
-test("mozInnerScreenX returns global mozInnerScreenX", () => {
-  (globalThis as any).mozInnerScreenX = 1;
-  expect(windowModule.mozInnerScreenX()).toBe(1);
-});
-
-test("mozInnerScreenY returns global mozInnerScreenY", () => {
-  (globalThis as any).mozInnerScreenY = 2;
-  expect(windowModule.mozInnerScreenY()).toBe(2);
-});
-
 test("moveBy calls global moveBy", () => {
   (globalThis as any).moveBy = (x: any, y: any) => x + y;
   expect(windowModule.moveBy(1, 2)).toBe(3);
@@ -346,6 +336,16 @@ test("moveTo calls global moveTo", () => {
 test("moveToFrom calls moveTo on passed window", () => {
   const win: any = { moveTo: (x: any, y: any) => y - x };
   expect(windowModule.moveToFrom(win, 1, 4)).toBe(3);
+});
+
+test("mozInnerScreenX returns global mozInnerScreenX", () => {
+  (globalThis as any).mozInnerScreenX = 1;
+  expect(windowModule.mozInnerScreenX()).toBe(1);
+});
+
+test("mozInnerScreenY returns global mozInnerScreenY", () => {
+  (globalThis as any).mozInnerScreenY = 2;
+  expect(windowModule.mozInnerScreenY()).toBe(2);
 });
 
 test("name returns global name", () => {
@@ -493,6 +493,37 @@ test("requestAnimationFrameFrom calls requestAnimationFrame on passed window", (
   expect(r).toBe(7);
 });
 
+test("requestIdleCallback calls global requestIdleCallback", () => {
+  (globalThis as any).requestIdleCallback = (cb: any) => cb("done");
+  let r: any;
+  windowModule.requestIdleCallback((v: any) => (r = v));
+  expect(r).toBe("done");
+});
+test("requestIdleCallbackFrom calls requestIdleCallback on passed window", () => {
+  const win: any = { requestIdleCallback: (cb: any) => cb("wdone") };
+  let r: any;
+  windowModule.requestIdleCallbackFrom(win, (v: any) => (r = v));
+  expect(r).toBe("wdone");
+});
+
+test("resizeBy calls global resizeBy", () => {
+  (globalThis as any).resizeBy = (x: any, y: any) => x - y;
+  expect(windowModule.resizeBy(5, 3)).toBe(2);
+});
+test("resizeByFrom calls resizeBy on passed window", () => {
+  const win: any = { resizeBy: (x: any, y: any) => x * y };
+  expect(windowModule.resizeByFrom(win, 2, 4)).toBe(8);
+});
+
+test("resizeTo calls global resizeTo", () => {
+  (globalThis as any).resizeTo = (x: any, y: any) => x + y;
+  expect(windowModule.resizeTo(1, 2)).toBe(3);
+});
+test("resizeToFrom calls resizeTo on passed window", () => {
+  const win: any = { resizeTo: (x: any, y: any) => y - x };
+  expect(windowModule.resizeToFrom(win, 1, 5)).toBe(4);
+});
+
 test("scheduler returns global scheduler", () => {
   (globalThis as any).scheduler = { schedule: true };
   expect(windowModule.scheduler()).toEqual({ schedule: true });
@@ -523,6 +554,47 @@ test("screenY returns global screenY", () => {
   expect(windowModule.screenY()).toBe(40);
 });
 
+test("scroll calls global scroll", () => {
+  (globalThis as any).scroll = (...a: any[]) => a.join("-");
+  expect(windowModule.scroll(1, 2)).toBe("1-2");
+});
+test("scrollFrom calls scroll on passed window", () => {
+  const win: any = { scroll: (...a: any[]) => a.length };
+  expect(windowModule.scrollFrom(win, "a", "b")).toBe(2);
+});
+
+test("scrollbars returns global scrollbars", () => {
+  (globalThis as any).scrollbars = { present: true };
+  expect(windowModule.scrollbars()).toEqual({ present: true });
+});
+
+test("scrollBy calls global scrollBy", () => {
+  (globalThis as any).scrollBy = (x: any, y: any) => x + y;
+  expect(windowModule.scrollBy(3, 4)).toBe(7);
+});
+test("scrollByFrom calls scrollBy on passed window", () => {
+  const win: any = { scrollBy: (x: any, y: any) => x * y };
+  expect(windowModule.scrollByFrom(win, 2, 5)).toBe(10);
+});
+
+test("scrollByLines calls global scrollByLines", () => {
+  (globalThis as any).scrollByLines = (l: any) => l + 1;
+  expect(windowModule.scrollByLines(2)).toBe(3);
+});
+test("scrollByLinesFrom calls scrollByLines on passed window", () => {
+  const win: any = { scrollByLines: (l: any) => l - 1 };
+  expect(windowModule.scrollByLinesFrom(win, 4)).toBe(3);
+});
+
+test("scrollByPages calls global scrollByPages", () => {
+  (globalThis as any).scrollByPages = (p: any) => p * 2;
+  expect(windowModule.scrollByPages(3)).toBe(6);
+});
+test("scrollByPagesFrom calls scrollByPages on passed window", () => {
+  const win: any = { scrollByPages: (p: any) => p + 2 };
+  expect(windowModule.scrollByPagesFrom(win, 1)).toBe(3);
+});
+
 test("scrollMaxX returns global scrollMaxX", () => {
   (globalThis as any).scrollMaxX = 50;
   expect(windowModule.scrollMaxX()).toBe(50);
@@ -531,6 +603,15 @@ test("scrollMaxX returns global scrollMaxX", () => {
 test("scrollMaxY returns global scrollMaxY", () => {
   (globalThis as any).scrollMaxY = 60;
   expect(windowModule.scrollMaxY()).toBe(60);
+});
+
+test("scrollTo calls global scrollTo", () => {
+  (globalThis as any).scrollTo = (...a: any[]) => a.reverse();
+  expect(windowModule.scrollTo(1, 2)).toEqual([2, 1]);
+});
+test("scrollToFrom calls scrollTo on passed window", () => {
+  const win: any = { scrollTo: (...a: any[]) => a.join(":" ) };
+  expect(windowModule.scrollToFrom(win, "x", "y")).toBe("x:y");
 });
 
 test("scrollX returns global scrollX", () => {
@@ -543,11 +624,6 @@ test("scrollY returns global scrollY", () => {
   expect(windowModule.scrollY()).toBe(80);
 });
 
-test("scrollbars returns global scrollbars", () => {
-  (globalThis as any).scrollbars = { present: true };
-  expect(windowModule.scrollbars()).toEqual({ present: true });
-});
-
 test("self returns global self", () => {
   (globalThis as any).self = { self: true };
   expect(windowModule.self()).toEqual({ self: true });
@@ -558,9 +634,63 @@ test("sessionStorage returns global sessionStorage", () => {
   expect(windowModule.sessionStorage()).toEqual({ session: 1 });
 });
 
+test("setInterval calls global setInterval", () => {
+  (globalThis as any).setInterval = (cb: any, t: any) => `${cb}:${t}`;
+  expect(windowModule.setInterval("cb", 1)).toBe("cb:1");
+});
+test("setIntervalFrom calls setInterval on passed window", () => {
+  const win: any = { setInterval: (c: any, t: any) => t * 2 };
+  expect(windowModule.setIntervalFrom(win, "c", 2)).toBe(4);
+});
+
+test("setTimeout calls global setTimeout", () => {
+  (globalThis as any).setTimeout = (cb: any, t: any) => `${t}`;
+  expect(windowModule.setTimeout(() => 0, 5)).toBe("5");
+});
+test("setTimeoutFrom calls setTimeout on passed window", () => {
+  const win: any = { setTimeout: (cb: any, t: any) => cb + t };
+  expect(windowModule.setTimeoutFrom(win, 1, 3)).toBe(4);
+});
+
 test("sharedStorage returns global sharedStorage", () => {
   (globalThis as any).sharedStorage = { shared: true };
   expect(windowModule.sharedStorage()).toEqual({ shared: true });
+});
+
+test("showDirectoryPicker calls global showDirectoryPicker", () => {
+  (globalThis as any).showDirectoryPicker = () => "dir";
+  expect(windowModule.showDirectoryPicker()).toBe("dir");
+});
+test("showDirectoryPickerFrom calls showDirectoryPicker on passed window", () => {
+  const win: any = { showDirectoryPicker: () => "wdir" };
+  expect(windowModule.showDirectoryPickerFrom(win)).toBe("wdir");
+});
+
+test("showOpenFilePicker calls global showOpenFilePicker", () => {
+  (globalThis as any).showOpenFilePicker = () => [1];
+  expect(windowModule.showOpenFilePicker()).toEqual([1]);
+});
+test("showOpenFilePickerFrom calls showOpenFilePicker on passed window", () => {
+  const win: any = { showOpenFilePicker: () => [2] };
+  expect(windowModule.showOpenFilePickerFrom(win)).toEqual([2]);
+});
+
+test("showSaveFilePicker calls global showSaveFilePicker", () => {
+  (globalThis as any).showSaveFilePicker = () => ({ save: true });
+  expect(windowModule.showSaveFilePicker()).toEqual({ save: true });
+});
+test("showSaveFilePickerFrom calls showSaveFilePicker on passed window", () => {
+  const win: any = { showSaveFilePicker: () => ({ wsave: true }) };
+  expect(windowModule.showSaveFilePickerFrom(win)).toEqual({ wsave: true });
+});
+
+test("sizeToContent calls global sizeToContent", () => {
+  (globalThis as any).sizeToContent = () => "sz";
+  expect(windowModule.sizeToContent()).toBe("sz");
+});
+test("sizeToContentFrom calls sizeToContent on passed window", () => {
+  const win: any = { sizeToContent: () => "wsz" };
+  expect(windowModule.sizeToContentFrom(win)).toBe("wsz");
 });
 
 test("speechSynthesis returns global speechSynthesis", () => {
@@ -571,6 +701,24 @@ test("speechSynthesis returns global speechSynthesis", () => {
 test("statusbar returns global statusbar", () => {
   (globalThis as any).statusbar = { visible: false };
   expect(windowModule.statusbar()).toEqual({ visible: false });
+});
+
+test("stop calls global stop", () => {
+  (globalThis as any).stop = () => "STOP";
+  expect(windowModule.stop()).toBe("STOP");
+});
+test("stopFrom calls stop on passed window", () => {
+  const win: any = { stop: () => "WSTOP" };
+  expect(windowModule.stopFrom(win)).toBe("WSTOP");
+});
+
+test("structuredClone calls global structuredClone", () => {
+  (globalThis as any).structuredClone = (o: any) => ({ c: o });
+  expect(windowModule.structuredClone(5)).toEqual({ c: 5 });
+});
+test("structuredCloneFrom calls structuredClone on passed window", () => {
+  const win: any = { structuredClone: (o: any) => o };
+  expect(windowModule.structuredCloneFrom(win, "x")).toBe("x");
 });
 
 test("toolbar returns global toolbar", () => {
@@ -601,8 +749,8 @@ test("window returns global window", () => {
 // New tests for instance-specific functions
 const windowInstance: any = {};
 const skipWindowFromFns = [
-  "atobFrom",
   "alertFrom",
+  "atobFrom",
   "blurFrom",
   "btoaFrom",
   "cancelAnimationFrameFrom",
@@ -632,6 +780,22 @@ const skipWindowFromFns = [
   "queueMicrotaskFrom",
   "reportErrorFrom",
   "requestAnimationFrameFrom",
+  "requestIdleCallbackFrom",
+  "resizeByFrom",
+  "resizeToFrom",
+  "scrollByFrom",
+  "scrollByLinesFrom",
+  "scrollByPagesFrom",
+  "scrollFrom",
+  "scrollToFrom",
+  "setIntervalFrom",
+  "setTimeoutFrom",
+  "showDirectoryPickerFrom",
+  "showOpenFilePickerFrom",
+  "showSaveFilePickerFrom",
+  "sizeToContentFrom",
+  "stopFrom",
+  "structuredCloneFrom",
 ];
 Object.keys(windowModule)
   .filter((k) => k.endsWith("From") && !skipWindowFromFns.includes(k))
