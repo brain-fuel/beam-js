@@ -17,3 +17,23 @@ export function cookieStore(): unknown {
 export function credentialless(): boolean {
   return (globalThis as any).credentialless;
 }
+
+export function crossOriginIsolated(): boolean {
+  return (globalThis as any).crossOriginIsolated;
+}
+
+export function crypto(): unknown {
+  return (globalThis as any).crypto;
+}
+
+export function customElements(): unknown {
+  return (globalThis as any).customElements;
+}
+
+export function devicePixelRatio(): number {
+  return (globalThis as any).devicePixelRatio;
+}
+
+export function document(): unknown {
+  return (globalThis as any).document;
+}

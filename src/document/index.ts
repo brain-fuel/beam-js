@@ -17,3 +17,23 @@ export function body(): unknown {
 export function characterSet(): string | undefined {
   return (globalThis as any).document?.characterSet;
 }
+
+export function childElementCount(): number | undefined {
+  return (globalThis as any).document?.childElementCount;
+}
+
+export function children(): unknown {
+  return (globalThis as any).document?.children;
+}
+
+export function compatMode(): string | undefined {
+  return (globalThis as any).document?.compatMode;
+}
+
+export function contentType(): string | undefined {
+  return (globalThis as any).document?.contentType;
+}
+
+export function currentScript(): unknown {
+  return (globalThis as any).document?.currentScript;
+}
