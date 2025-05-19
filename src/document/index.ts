@@ -123,6 +123,55 @@ export function createEventFrom(doc: any, ...args: any[]): unknown {
 }
 
 
+export function createNodeIterator(...args: any[]): unknown {
+  return (globalThis as any).document?.createNodeIterator(...args);
+}
+export function createNodeIteratorFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createNodeIterator(...args);
+}
+
+export function createProcessingInstruction(...args: any[]): unknown {
+  return (globalThis as any).document?.createProcessingInstruction(...args);
+}
+export function createProcessingInstructionFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createProcessingInstruction(...args);
+}
+
+export function createRange(...args: any[]): unknown {
+  return (globalThis as any).document?.createRange(...args);
+}
+export function createRangeFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createRange(...args);
+}
+
+export function createTextNode(...args: any[]): unknown {
+  return (globalThis as any).document?.createTextNode(...args);
+}
+export function createTextNodeFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createTextNode(...args);
+}
+
+export function createTouch(...args: any[]): unknown {
+  return (globalThis as any).document?.createTouch(...args);
+}
+export function createTouchFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createTouch(...args);
+}
+
+export function createTouchList(...args: any[]): unknown {
+  return (globalThis as any).document?.createTouchList(...args);
+}
+export function createTouchListFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createTouchList(...args);
+}
+
+export function createTreeWalker(...args: any[]): unknown {
+  return (globalThis as any).document?.createTreeWalker(...args);
+}
+export function createTreeWalkerFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).createTreeWalker(...args);
+}
+
 export function body(): unknown {
   return (globalThis as any).document?.body;
 }
@@ -208,6 +257,47 @@ export function embeds(): unknown {
 }
 export function embedsFrom(doc: any): unknown {
   return (doc as any).embeds;
+}
+export function elementFromPoint(...args: any[]): unknown {
+  return (globalThis as any).document?.elementFromPoint(...args);
+}
+export function elementFromPointFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).elementFromPoint(...args);
+}
+
+export function elementsFromPoint(...args: any[]): unknown {
+  return (globalThis as any).document?.elementsFromPoint(...args);
+}
+export function elementsFromPointFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).elementsFromPoint(...args);
+}
+
+export function enableStyleSheetsForSet(...args: any[]): unknown {
+  return (globalThis as any).document?.enableStyleSheetsForSet(...args);
+}
+export function enableStyleSheetsForSetFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).enableStyleSheetsForSet(...args);
+}
+
+export function exitFullscreen(...args: any[]): unknown {
+  return (globalThis as any).document?.exitFullscreen(...args);
+}
+export function exitFullscreenFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).exitFullscreen(...args);
+}
+
+export function exitPictureInPicture(...args: any[]): unknown {
+  return (globalThis as any).document?.exitPictureInPicture(...args);
+}
+export function exitPictureInPictureFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).exitPictureInPicture(...args);
+}
+
+export function exitPointerLock(...args: any[]): unknown {
+  return (globalThis as any).document?.exitPointerLock(...args);
+}
+export function exitPointerLockFrom(doc: any, ...args: any[]): unknown {
+  return (doc as any).exitPointerLock(...args);
 }
 
 
