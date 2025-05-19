@@ -14,6 +14,12 @@ import {
   frameElement,
   frames,
   fullScreen,
+  history,
+  indexedDb,
+  innerHeight,
+  innerWidth,
+  isSecureContext,
+  launchQueue,
 } from "../../src/window";
 import { expect, test } from "bun:test";
 
@@ -90,4 +96,34 @@ test("frames returns global frames", () => {
 test("fullScreen returns global fullScreen", () => {
   (globalThis as any).fullScreen = true;
   expect(fullScreen()).toBe(true);
+});
+
+test("history returns global history", () => {
+  (globalThis as any).history = { stack: [] };
+  expect(history()).toEqual({ stack: [] });
+});
+
+test("indexedDb returns global indexedDB", () => {
+  (globalThis as any).indexedDB = { db: 1 };
+  expect(indexedDb()).toEqual({ db: 1 });
+});
+
+test("innerHeight returns global innerHeight", () => {
+  (globalThis as any).innerHeight = 480;
+  expect(innerHeight()).toBe(480);
+});
+
+test("innerWidth returns global innerWidth", () => {
+  (globalThis as any).innerWidth = 640;
+  expect(innerWidth()).toBe(640);
+});
+
+test("isSecureContext returns global isSecureContext", () => {
+  (globalThis as any).isSecureContext = true;
+  expect(isSecureContext()).toBe(true);
+});
+
+test("launchQueue returns global launchQueue", () => {
+  (globalThis as any).launchQueue = { queue: true };
+  expect(launchQueue()).toEqual({ queue: true });
 });
