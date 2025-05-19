@@ -25,6 +25,16 @@ import {
   implementation,
   lastElementChild,
   links,
+  pictureInPictureElement,
+  pictureInPictureEnabled,
+  plugins,
+  pointerLockElement,
+  prerendering,
+  scripts,
+  scrollingElement,
+  styleSheets,
+  timeline,
+  visibilityState,
 } from "../../src/document";
 import { expect, test } from "bun:test";
 
@@ -157,4 +167,54 @@ test("lastElementChild returns document.lastElementChild", () => {
 test("links returns document.links", () => {
   (globalThis as any).document = { links: ["a"] };
   expect(links()).toEqual(["a"]);
+});
+
+test("pictureInPictureElement returns document.pictureInPictureElement", () => {
+  (globalThis as any).document = { pictureInPictureElement: { pip: true } };
+  expect(pictureInPictureElement()).toEqual({ pip: true });
+});
+
+test("pictureInPictureEnabled returns document.pictureInPictureEnabled", () => {
+  (globalThis as any).document = { pictureInPictureEnabled: true };
+  expect(pictureInPictureEnabled()).toBe(true);
+});
+
+test("plugins returns document.plugins", () => {
+  (globalThis as any).document = { plugins: [1] };
+  expect(plugins()).toEqual([1]);
+});
+
+test("pointerLockElement returns document.pointerLockElement", () => {
+  (globalThis as any).document = { pointerLockElement: { el: 1 } };
+  expect(pointerLockElement()).toEqual({ el: 1 });
+});
+
+test("prerendering returns document.prerendering", () => {
+  (globalThis as any).document = { prerendering: false };
+  expect(prerendering()).toBe(false);
+});
+
+test("scripts returns document.scripts", () => {
+  (globalThis as any).document = { scripts: ["s"] };
+  expect(scripts()).toEqual(["s"]);
+});
+
+test("scrollingElement returns document.scrollingElement", () => {
+  (globalThis as any).document = { scrollingElement: { se: 1 } };
+  expect(scrollingElement()).toEqual({ se: 1 });
+});
+
+test("styleSheets returns document.styleSheets", () => {
+  (globalThis as any).document = { styleSheets: ["ss"] };
+  expect(styleSheets()).toEqual(["ss"]);
+});
+
+test("timeline returns document.timeline", () => {
+  (globalThis as any).document = { timeline: { t: 1 } };
+  expect(timeline()).toEqual({ t: 1 });
+});
+
+test("visibilityState returns document.visibilityState", () => {
+  (globalThis as any).document = { visibilityState: "visible" };
+  expect(visibilityState()).toBe("visible");
 });

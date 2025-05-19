@@ -30,6 +30,16 @@ import {
   name,
   navigation,
   navigator,
+  opener,
+  origin,
+  originAgentCluster,
+  outerHeight,
+  outerWidth,
+  pageXOffset,
+  pageYOffset,
+  parent,
+  performance,
+  personalbar,
 } from "../../src/window";
 import { expect, test } from "bun:test";
 
@@ -186,4 +196,54 @@ test("navigation returns global navigation", () => {
 test("navigator returns global navigator", () => {
   (globalThis as any).navigator = { ua: "test" };
   expect(navigator()).toEqual({ ua: "test" });
+});
+
+test("opener returns global opener", () => {
+  (globalThis as any).opener = { win: 1 };
+  expect(opener()).toEqual({ win: 1 });
+});
+
+test("origin returns global origin", () => {
+  (globalThis as any).origin = "http://example";
+  expect(origin()).toBe("http://example");
+});
+
+test("originAgentCluster returns global originAgentCluster", () => {
+  (globalThis as any).originAgentCluster = { cluster: true };
+  expect(originAgentCluster()).toEqual({ cluster: true });
+});
+
+test("outerHeight returns global outerHeight", () => {
+  (globalThis as any).outerHeight = 800;
+  expect(outerHeight()).toBe(800);
+});
+
+test("outerWidth returns global outerWidth", () => {
+  (globalThis as any).outerWidth = 1024;
+  expect(outerWidth()).toBe(1024);
+});
+
+test("pageXOffset returns global pageXOffset", () => {
+  (globalThis as any).pageXOffset = 10;
+  expect(pageXOffset()).toBe(10);
+});
+
+test("pageYOffset returns global pageYOffset", () => {
+  (globalThis as any).pageYOffset = 20;
+  expect(pageYOffset()).toBe(20);
+});
+
+test("parent returns global parent", () => {
+  (globalThis as any).parent = { parent: true };
+  expect(parent()).toEqual({ parent: true });
+});
+
+test("performance returns global performance", () => {
+  (globalThis as any).performance = { perf: 1 };
+  expect(performance()).toEqual({ perf: 1 });
+});
+
+test("personalbar returns global personalbar", () => {
+  (globalThis as any).personalbar = { bar: 1 };
+  expect(personalbar()).toEqual({ bar: 1 });
 });
