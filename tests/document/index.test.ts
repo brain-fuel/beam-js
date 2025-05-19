@@ -14,6 +14,11 @@ import {
   documentURI,
   embeds,
   featurePolicy,
+  firstElementChild,
+  fonts,
+  forms,
+  fragmentDirective,
+  fullscreenElement,
 } from "../../src/document";
 import { expect, test } from "bun:test";
 
@@ -91,4 +96,29 @@ test("embeds returns document.embeds", () => {
 test("featurePolicy returns document.featurePolicy", () => {
   (globalThis as any).document = { featurePolicy: { features: true } };
   expect(featurePolicy()).toEqual({ features: true });
+});
+
+test("firstElementChild returns document.firstElementChild", () => {
+  (globalThis as any).document = { firstElementChild: { child: 1 } };
+  expect(firstElementChild()).toEqual({ child: 1 });
+});
+
+test("fonts returns document.fonts", () => {
+  (globalThis as any).document = { fonts: ["Arial"] };
+  expect(fonts()).toEqual(["Arial"]);
+});
+
+test("forms returns document.forms", () => {
+  (globalThis as any).document = { forms: [1, 2] };
+  expect(forms()).toEqual([1, 2]);
+});
+
+test("fragmentDirective returns document.fragmentDirective", () => {
+  (globalThis as any).document = { fragmentDirective: { text: "d" } };
+  expect(fragmentDirective()).toEqual({ text: "d" });
+});
+
+test("fullscreenElement returns document.fullscreenElement", () => {
+  (globalThis as any).document = { fullscreenElement: { el: true } };
+  expect(fullscreenElement()).toEqual({ el: true });
 });

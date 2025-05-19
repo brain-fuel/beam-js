@@ -57,3 +57,23 @@ export function embeds(): unknown {
 export function featurePolicy(): unknown {
   return (globalThis as any).document?.featurePolicy;
 }
+
+export function firstElementChild(): unknown {
+  return (globalThis as any).document?.firstElementChild;
+}
+
+export function fonts(): unknown {
+  return (globalThis as any).document?.fonts;
+}
+
+export function forms(): unknown {
+  return (globalThis as any).document?.forms;
+}
+
+export function fragmentDirective(): unknown {
+  return (globalThis as any).document?.fragmentDirective;
+}
+
+export function fullscreenElement(): unknown {
+  return (globalThis as any).document?.fullscreenElement;
+}

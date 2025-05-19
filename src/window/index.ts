@@ -57,3 +57,27 @@ export function frames(): unknown {
 export function fullScreen(): boolean {
   return (globalThis as any).fullScreen;
 }
+
+export function history(): unknown {
+  return (globalThis as any).history;
+}
+
+export function indexedDb(): unknown {
+  return (globalThis as any).indexedDB;
+}
+
+export function innerHeight(): number {
+  return (globalThis as any).innerHeight;
+}
+
+export function innerWidth(): number {
+  return (globalThis as any).innerWidth;
+}
+
+export function isSecureContext(): boolean {
+  return (globalThis as any).isSecureContext;
+}
+
+export function launchQueue(): unknown {
+  return (globalThis as any).launchQueue;
+}
