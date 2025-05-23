@@ -1,4 +1,4 @@
-entrypoints = ["src/index.ts"]
+entrypoints = ["src/index.js"]
 outdir = "dist"
 minify = true
 target = "node"

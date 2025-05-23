@@ -9,12 +9,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node --minify",
+    "build": "bun build src/index.js --outdir dist --target node --minify",
     "prepublishOnly": "bun run build",
     "test": "bun test"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "^5"
   }
 }
