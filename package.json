@@ -1,5 +1,5 @@
 {
-  "name": "beam-js",
+  "name": "luminix.dev/fds",
   "version": "0.1.0",
   "description": "A wrapper around window, document, event, etc. to be called from BEAM languages.",
   "type": "module",
