@@ -1,4 +1,4 @@
-# luminix.dev/fds
+# luminix.dev/fnds
 
 A wrapper around window, document, event, etc. to be called from BEAM languages.
 This library acts as a Functional DOM Shim.
