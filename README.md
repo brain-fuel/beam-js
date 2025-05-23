@@ -1,6 +1,7 @@
-# beam-js
+# luminix.dev/fds
 
 A wrapper around window, document, event, etc. to be called from BEAM languages.
+This library acts as a Functional DOM Shim.
 
 This project uses [Bun](https://bun.sh) to build a small TypeScript library.
 
